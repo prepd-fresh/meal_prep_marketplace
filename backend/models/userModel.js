@@ -13,7 +13,6 @@ export const userSchema = new Schema({
     email: String,
     name:String,
     password:String,
-    name: String,
     date: {type: Date, default: Date.now}
 
 })
