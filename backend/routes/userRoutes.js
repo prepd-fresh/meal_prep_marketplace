@@ -1,6 +1,7 @@
 import{
     showAllUsers,
-    createTestUser
+    createTestUser,
+    deleteAllUsers
 } from '../controllers/userController'
 
 const routes = (app) =>{
@@ -13,6 +14,12 @@ const routes = (app) =>{
     .get((req,res,next) =>{
         next();
     },showAllUsers)
+
+    app.route('/api/delete')
+    .get((req,res,next) =>{
+        next();
+    },deleteAllUsers)
+
 
 }
 export default routes

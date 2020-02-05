@@ -32,4 +32,16 @@ export const showAllUsers = (req,res) =>{
         }
         res.send(JSON.stringify(userMap))
     });
+
+    
+}
+
+export const deleteAllUsers = (req,res) =>{
+    userModel.deleteMany({ email: 'test@test.com' }, (err) => {
+        if (err) {
+            res.send(err);
+        }
+        res.send("deleted all users")
+        res.end();
+    })
 }
