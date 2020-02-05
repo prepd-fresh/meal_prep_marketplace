@@ -3,17 +3,13 @@ const app = express();
 const mongoose = require('mongoose')
 const port = 3000;
 
-const databaseConnection = "mongodb+srv://MealPrepMarketDB:MealprepMarket$99@mealprepmarketplace-yc2s2.azure.mongodb.net/test?retryWrites=true&w=majority"
+const uri = "mongodb+srv://MealPRepMarketplace:MealPrepPassword$99@cluster0-9ly9m.azure.mongodb.net/test?retryWrites=true&w=majority"
 
-mongoose.connect(databaseConnection,{
+mongoose.connect(uri, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true
-}).then(()=>{
-    console.log("connected to database");
-}).catch((err)=>{
-    console.log(err)
-})
+}).then(console.log("Connected to database"))
 
 
 app.get('/',(req, res) =>{
@@ -24,3 +20,4 @@ app.get('/',(req, res) =>{
 app.listen(3000, ()=>{
     console.log(`server is running on`)
 })
+
