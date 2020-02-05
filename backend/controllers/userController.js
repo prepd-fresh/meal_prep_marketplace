@@ -1,10 +1,11 @@
-import mongosse from 'mongoose';
-import {Schema, User} from '../models/userModel';
+import mongoose from 'mongoose';
+import Schema  from '../models/userModel';
 import bcrypt  from 'bcrypt'
 
-const user = mongosse.model('User', Schema.user)
+const userModel = mongoose.model('User', Schema.userSchema)
+
 function testUser(){
-    var user = new User({
+    var user = new userModel({
         email: "test@test.com",
         name: "testUName",
         password: "testpassword"
@@ -20,7 +21,7 @@ export const createTestUser = (req, res) =>{
 }
 
 export const showAllUsers = (req,res) =>{
-    user.find({}, function (err, user) {
+    userModel.find({}, function (err, user) {
         var userMap = {};
 
         user.forEach((users) => {
