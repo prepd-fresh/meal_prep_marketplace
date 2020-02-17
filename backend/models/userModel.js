@@ -7,6 +7,8 @@ export var userSchema = new Schema({
     password: String
 });
 
+//before saving the new user into the api database
+//it hash the password;
 userSchema.pre("save", function(next){
     let user = this;
   
