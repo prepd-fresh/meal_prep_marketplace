@@ -30,6 +30,6 @@ export const comapnySchema = new Schema({
     OtherProductDescription:String
 })
 
-const Comapny = model('Comapny', comapnySchema)
+const Comapny = model('Comapny', companySchema)
 
 export default Comapny

@@ -2,6 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes'
+import comapnyRoutes from './routes/comapnyRoutes'
 const app = express();
 
 
@@ -14,6 +15,7 @@ mongoose.connect(uri, {
 }).then(console.log("connected to database")).catch((err)=>console.log(err)) ;
 
 userRoutes(app)
+comapnyRoutes(app)
 
 app.get('/',(req, res) =>{
     res.send("hello world");
