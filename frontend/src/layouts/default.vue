@@ -1,19 +1,18 @@
-<template>
-    <div>
+<template lang="html">
+  <div>
       <navigation/>
-      <slot/>
-    </div>
+      <slot />
+  </div>
 </template>
 
 <script>
-import navigation from "@/components/homePage/homeNavigation"
+import navigation from "@/components/homePage/homeNavigation";
+
 export default {
     components:{
         navigation
     }
 }
 </script>
-
-<style>
-
+<style lang="css" scoped>
 </style>

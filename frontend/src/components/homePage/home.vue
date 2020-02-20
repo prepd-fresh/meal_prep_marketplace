@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Navigation component</h1>
+    <h1>Home commponent</h1>
   </div>
 </template>
 
 <script>
 export default {
-     data(){
+    data(){
         return {}
     },
 };
