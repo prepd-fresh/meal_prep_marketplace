@@ -1,11 +1,11 @@
 import {
-    createComapny
+    createCompany
 }from '../controllers/companyController'
 
 const routes = (app) =>{
-    app.route('/api/createComapny')
+    app.route('/api/createCompany')
     .post((req,res,next) =>{
         next();
-    },createComapny)
+    },createCompany)
 }
 export default routes

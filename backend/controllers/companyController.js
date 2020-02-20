@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
 import Schema from '../models/companyModel'
 
-const comapnyModel = mongoose.model('Comapny', Schema.companySchema)
+const companyModel = mongoose.model('Company', Schema.companySchema)
 
-export const createComapny = (req, res) =>{
+export const createCompany = (req, res) =>{
     //create company logic here
 
     res.send("company created")
 }
 
 
-export const searchComapny = (req, res) =>{
+export const searchCompany = (req, res) =>{
     //create company logic here
 
     res.send("company created")
