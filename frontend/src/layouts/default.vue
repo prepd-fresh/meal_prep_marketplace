@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import navigation from "@/components/homePage/homeNavigation";
+import navigation from "@/components/homePage/navigation";
 
 export default {
     components:{
