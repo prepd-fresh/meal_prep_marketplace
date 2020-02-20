@@ -19,7 +19,5 @@ const routes = (app) =>{
     .get((req,res,next) =>{
         next();
     },deleteAllUsers)
-
-
 }
 export default routes
