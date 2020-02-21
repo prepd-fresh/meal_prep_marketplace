@@ -13,7 +13,7 @@ export default new VueRouter({
     },{
         path: "/about",
         name: "about",
-        component: () => import("@/components/homePage/about.vue")
+        component: require("@/components/homePage/about.vue").default
     }
   
   ]

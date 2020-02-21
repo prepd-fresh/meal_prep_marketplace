@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 //import layouts here
-import Default from "@/Layouts/default.vue"
+import Default from "@/layouts/default.vue"
 
 
 //implement Vue dependences/pacages here
