@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Home commponent</h1>
+   <banner/>
     <ul v-for="n in 10" v-bind:key="n">
       <company :idNumber="n"/>
     </ul>
@@ -9,12 +9,14 @@
 
 <script>
 import company from "./company.vue";
+import banner from "./homeBanner"
 export default {
   data() {
     return {};
   },
   components: {
-    company
+    company,
+    banner
   }
 };
 </script>

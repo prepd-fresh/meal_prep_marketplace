@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import BootstrapVue from 'bootstrap-vue'
+import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import router from "./routes"
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,6 +12,7 @@ import Default from "@/layouts/default.vue"
 
 //implement Vue dependences/pacages here
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 //implement layouts here
 Vue.component('default-layout', Default)

@@ -1,42 +1,79 @@
 <template>
-  <div>
-    <h4>{{idNumber}} Example of comapny</h4>
-    <b-card
-      img-src="https://placekitten.com/300/300"
-      img-alt="Card image"
-      img-left
-      class="mb-3"
-      @click="$bvModal.show(`bv-modal-{{idNumber}}`)"
-    >
-      <b-card-text>Some quick example text to build on the card and make up the bulk of the card's content.</b-card-text>
-    </b-card>
-
-    <template>
-      <b-modal :id="'bv-model-' + idNumber" hide-footer>
-        <template v-slot:modal-title>
-          {{idNumber}}
-          <code>$bvModal</code> Methods
-        </template>
-        <div class="d-block text-center">
-          <h3>Hello From This Modal!</h3>
-        </div>
-        <b-button class="mt-3" block @click="$bvModal.hide(`bv-modal-{{idNumber}}`)">Close Me</b-button>
-      </b-modal>
-    </template>
+<div>
+<div class="layout">
+  <b-card class="cardMain" no-body  style="max-width: 1000px;" @click="$bvModal.show('bv-modal-'+idNumber)">
+    <b-row no-gutters>
+      <b-col md="6">
+        <b-card-img  :src="images.foodPicture" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="6">
+        <b-card-body >
+          <b-card-text>
+            <h4 class = "header">{{idNumber}} Example of comapny</h4>
+          </b-card-text>
+        </b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
+</div>
+<div>
+    <b-modal :id="'bv-modal-'+idNumber" hide-footer>
+      <template v-slot:modal-title>Company : {{idNumber}}</template>
+      <b-card-group deck>
+        <b-card :img-src="images.foodPicture" img-alt="Card image" img-top>
+          <b-card-text>
+            <companyInfo/>
+          </b-card-text>
+        </b-card>
+      </b-card-group>
+    </b-modal>
+  </div>
   </div>
 </template>
 
 <script>
+import companyInfo from './companyInfo'
 export default {
   data() {
-    return {};
+    return {
+      images: {
+        foodPicture: require("../../assets/images/burrito.jpg")
+      }
+    };
   },
   props: {
     idNumber: Number
+  },
+  components:{
+    companyInfo
   },
   methods: {}
 };
 </script>
 
 <style>
+.modal-title{
+  color:#f8951d;
+}
+
+.cardMain:hover {
+  background:#F5F5F5;
+}
+.cardMain{
+  padding: 30px;
+  margin-right: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.layout{
+  margin-left:10%; 
+}
+.header{
+  color:#f8951d;
+  text-align: center;
+}
+@media only screen and (max-width: 600px) {
+  .layout{
+    margin-left:0%; 
+  }
+}
 </style>
