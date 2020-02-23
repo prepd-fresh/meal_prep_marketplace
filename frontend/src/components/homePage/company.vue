@@ -4,7 +4,7 @@
   <b-card class="cardMain" no-body  style="max-width: 1000px;" @click="$bvModal.show('bv-modal-'+idNumber)">
     <b-row no-gutters>
       <b-col md="6">
-        <b-card-img  :src="images.foodPicture" class="rounded-0"></b-card-img>
+        <b-card-img  :src="images.foodPicture" class="rounded-0" ></b-card-img>
       </b-col>
       <b-col md="6">
         <b-card-body >
@@ -17,10 +17,10 @@
   </b-card>
 </div>
 <div>
-    <b-modal :id="'bv-modal-'+idNumber" hide-footer>
+    <b-modal :id="'bv-modal-'+idNumber" size="l" hide-footer>
       <template v-slot:modal-title>Company : {{idNumber}}</template>
       <b-card-group deck>
-        <b-card :img-src="images.foodPicture" img-alt="Card image" img-top>
+        <b-card :img-src="images.foodPicture" class="cardImage" img-alt="Card image" img-top>
           <b-card-text>
             <companyInfo/>
           </b-card-text>
@@ -71,9 +71,16 @@ export default {
   color:#f8951d;
   text-align: center;
 }
+.modal-body{
+  margin:-80px;
+}
+
 @media only screen and (max-width: 600px) {
   .layout{
     margin-left:0%; 
+  }
+  .modal-body{
+  margin:-10px;
   }
 }
 </style>

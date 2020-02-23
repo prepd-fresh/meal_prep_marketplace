@@ -1,19 +1,17 @@
 <template>
   <div>
     <b-tabs content-class="mt-3">
-      <b-tab title="price">
-        <price />
+      <b-tab title="Payment Options">
+        <paymentOptions />
       </b-tab>
-      <b-tab title="menu">
-       
+      <b-tab title="Menu">
+        <companyMenu/>
       </b-tab>
-      <b-tab title="website">
-
+      <b-tab title="Comapny website">
+        <h2>website link</h2>
       </b-tab>
       <b-tab title="location">
-        seomthing
-       
-      
+        <companyLocation/>
       </b-tab>
     </b-tabs>
     
@@ -22,7 +20,9 @@
 </template>
 
 <script>
-import price from "./companyComponents/price"
+import paymentOptions from "./companyComponents/paymentOptions"
+import companyLocation from "./companyComponents/companyLocation"
+import companyMenu from "./companyComponents/menu"
 
 
 export default {
@@ -30,7 +30,9 @@ export default {
     return {};
   },
   components: {
-    price
+    paymentOptions,
+    companyLocation,
+    companyMenu
   }
 };
 </script>
@@ -49,9 +51,13 @@ export default {
 @media only screen and (max-width: 600px) {
   .nav {
     margin-left: -10px;
+
   }
   .nav-link {
     font-size: 11px;
+  }
+  .nav-item{
+    margin: -5px;
   }
 }
 </style>
