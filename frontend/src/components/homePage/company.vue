@@ -10,6 +10,7 @@
         <b-card-body >
           <b-card-text>
             <h4 class = "header">{{idNumber}} Example of comapny</h4>
+            <companyMainInfo/>
           </b-card-text>
         </b-card-body>
       </b-col>
@@ -33,6 +34,7 @@
 
 <script>
 import companyInfo from './companyInfo'
+import companyMainInfo from './companyMainInfo'
 export default {
   data() {
     return {
@@ -45,7 +47,8 @@ export default {
     idNumber: Number
   },
   components:{
-    companyInfo
+    companyInfo,
+    companyMainInfo
   },
   methods: {}
 };
