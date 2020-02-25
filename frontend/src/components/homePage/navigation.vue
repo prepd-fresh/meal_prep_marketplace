@@ -104,6 +104,7 @@ export default {
   position: fixed;
   z-index: 1;
   width: 100%;
+  opacity: 0.9
 }
 .searchList{
   display: inline-block !important;
@@ -146,6 +147,7 @@ export default {
   display: inline-block;
   background-color: #f8951d !important;
   border-style: none !important;
+  opacity: 1 !important;
 }
 
 .searchButton:focus{
