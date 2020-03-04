@@ -30,6 +30,7 @@ export default {
 .banner {
   background-image: url("../../assets/images/banner3.jpg");
   background-size: cover;
+  position: relative;
   filter:brightness(100%);
 }
 .button{
