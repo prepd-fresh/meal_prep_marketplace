@@ -27,18 +27,9 @@
     <b-collapse class="search" id="collapse-2">
    
       <b-card>
-        <div class="searchList">
-        <b-button class="searchButton"  squared variant="primary">Vegaterian</b-button>
-        <b-button class="searchButton"  squared variant="primary">Vegen</b-button>
-        <b-button class="searchButton"  squared variant="primary">Customisalbe</b-button>
-        <b-button class="searchButton"  squared variant="primary">Discount avaliable</b-button>
-        <b-button class="searchButton"  squared variant="primary">Diffrent Menu</b-button>
-        <b-button class="searchButton"  squared variant="primary">Deliverly Charges</b-button>
-        <b-button class="searchButton"  squared variant="primary">Extra Protien</b-button>
-        <b-button class="searchButton"  squared variant="primary">Package option</b-button>
-        <b-button class="searchButton"  squared variant="primary">Breakfast options</b-button>
-        <b-button class="searchButton"  squared variant="primary">Snacks</b-button>
-        <b-button class="searchButton"  squared variant="primary">Subscription</b-button>
+        <div v-for="searchItem in advancedSearch" v-bind:key="searchItem" class="searchList">
+
+          <b-button class="searchButton"  squared variant="primary">{{searchItem}}</b-button>
         </div>
       </b-card>
     </b-collapse>
@@ -71,6 +62,19 @@ export default {
         { value: "B", text: "b" },
         { value: "C", text: "c" },
         { value: "D", text: "d" }
+      ],
+      advancedSearch:[
+        "Vegaterian",
+        "Vegen",
+        "Customisalbe",
+        "Discount avaliable",
+        "Diffrent Menu",
+        "Deliverly Charges",
+        "Extra Protien",
+        "Package option",
+        "Breakfast options",
+        "Snacks",
+        "Subscription",
       ],
       images: {
         logoSmall: require("../../assets/images/small-logo.png")

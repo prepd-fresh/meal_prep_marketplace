@@ -17,7 +17,7 @@ var companySchema = exports.companySchema = new _mongoose.Schema({
         OneTimeOrder: Boolean,
         MYO: Boolean
     }],
-    PrceRange: Number,
+    PrceRange: String,
     BulkDiscount: Boolean,
     NumberOfMeals: Number,
     OptionsMeals: [{
