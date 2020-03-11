@@ -36,7 +36,7 @@
       </b-form-group>
 
       <div class="buttonGroup">
-        <b-button type="submit" variant="primary" class="buttonSubmit">Register</b-button>
+        <b-button type="submit" variant="primary" class="buttonSubmit">Login</b-button>
         <b-button class="buttonForgot" variant="danger">Forgot Login </b-button>
       </div>
     </b-form>
