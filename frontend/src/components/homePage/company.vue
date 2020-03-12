@@ -58,14 +58,20 @@ export default {
 .modal-title{
   color:#f8951d;
 }
-
+.cardImage{
+  
+}
 .cardMain:hover {
   background:#F5F5F5;
 }
 .cardMain{
-  padding: 30px;
+  margin:5% !important;
   margin-right: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.card{
+  margin-top: 0% !important;
 }
 .layout{
   margin-left:10%; 
@@ -77,7 +83,9 @@ export default {
 .modal-body{
   margin:-80px;
 }
-
+.round-0{
+  margin:10px !important;
+}
 @media only screen and (max-width: 600px) {
   .layout{
     margin-left:0%; 

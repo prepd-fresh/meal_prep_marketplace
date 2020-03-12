@@ -23,7 +23,6 @@ export const createTestUser = (req, res) =>{
 export const showAllUsers = (req,res) =>{
     userModel.find({}, function (err, user) {
         var userMap = {};
-
         user.forEach((users) => {
             userMap[users._id] = user;
         });
@@ -42,7 +41,7 @@ export const register = (req, res) =>{
 Login controller
 */
 export const loginUser = (req, res) =>{
-    console.log("test")
+    console.log("test Login")
     res.send("sent back data")
 }
 /*

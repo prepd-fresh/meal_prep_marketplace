@@ -44,8 +44,8 @@
 </template>
 
 <script>
-//import { response } from 'express';
-//const API_URL ="http://localhost:3000/api/login"
+
+const API_URL ="http://localhost:3000/api/login"
 export default {
   data() {
     return {
@@ -57,15 +57,17 @@ export default {
     };
   },
   methods:{ 
-  /*  onSubmit(evt){
-      evt.preventDefault();
+   onSubmit(evt){
+          evt.preventDefault();
       this.$http
         .post(API_URL, {
-          user: JSON.stringify(this.form)   
-    
-        })*/
+          user: JSON.stringify(this.form)
+        }).then(response =>{
+          alert("something")
+            alert(response)
+        })
     },
-  
+  }
   
 }
 </script>

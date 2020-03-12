@@ -26,7 +26,7 @@
     </b-navbar>
     <b-collapse class="search" id="collapse-2">
    
-      <b-card>
+      <b-card class="advancedSearch">
         <div v-for="searchItem in advancedSearch" v-bind:key="searchItem" class="searchList">
 
           <b-button class="searchButton"  squared variant="primary">{{searchItem}}</b-button>
@@ -89,6 +89,9 @@ export default {
   background-color: white !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.advancedSearch{
+  margin:0%;
+}
 .navBand {
   color: black !important;
 }
@@ -107,11 +110,10 @@ export default {
 .search {
   position: fixed;
   z-index: 1;
-  width: 100%;
   opacity: 0.9
 }
 .searchList{
-  display: inline-block !important;
+
 }
 .header {
   color: #f8951d;
@@ -148,7 +150,7 @@ export default {
 .searchButton{
   margin-left:10px;
   margin-top:10px;
-  display: inline-block;
+  display: inline-block !important;
   background-color: #f8951d !important;
   border-style: none !important;
   opacity: 1 !important;
