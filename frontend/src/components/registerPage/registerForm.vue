@@ -134,7 +134,7 @@ export default {
       }
     },
     onSubmit(){
-      alert("test")
+      alert("Register")
     }
   },
    computed: {

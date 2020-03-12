@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import axios from 'axios'
 import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import router from "./routes"
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -21,8 +22,7 @@ Vue.component('noSearch-layout', noSearch)
 
 
 //vue axios implementation (uses it to send data to server)
-//Vue.prototype.$http = axios
-
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 new Vue({
