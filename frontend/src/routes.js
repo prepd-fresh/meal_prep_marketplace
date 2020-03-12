@@ -14,17 +14,17 @@ export default new VueRouter({
       path: "/about",
       name: "about",
       meta: {layout: "noSearch"},
-      component:() => import("@/components/aboutPage/about.vue")
+      component:require("@/components/aboutPage/about.vue").default
     },{
       path: "/register",
       name: "register",
       meta: {layout: "noSearch"},
-      component: () => import("@/components/registerPage/registerForm")
+      component: require("@/components/registerPage/registerForm").default
     },{
       path:"/login",
       name:"login",
       meta: {layout: "noSearch"},
-      component:() => import("@/components/loginPage/loginForm")
+      component: require("@/components/loginPage/loginForm").default
     }
 
   ]

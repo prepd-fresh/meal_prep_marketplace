@@ -1,7 +1,9 @@
 import{
     showAllUsers,
     createTestUser,
-    deleteAllUsers
+    deleteAllUsers,
+    register,
+    loginUser
 } from '../controllers/userController'
 
 const routes = (app) =>{
@@ -10,11 +12,21 @@ const routes = (app) =>{
         next();
     },createTestUser)
 
+    app.route('/api/register')
+    .put((req,res,next) =>{
+        next();
+        
+    },register)
+    app.route('/api/login')
+    .get((req,res,next) =>{
+        next();
+    },loginUser)
+    
     app.route('/api/allusers')
     .get((req,res,next) =>{
         next();
     },showAllUsers)
-
+    
     app.route('/api/delete')
     .get((req,res,next) =>{
         next();

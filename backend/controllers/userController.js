@@ -35,7 +35,19 @@ export const showAllUsers = (req,res) =>{
 
     
 }
-
+export const register = (req, res) =>{
+    console.log(req.user)
+}
+/*
+Login controller
+*/
+export const loginUser = (req, res) =>{
+    console.log("test")
+    res.send("sent back data")
+}
+/*
+delete all users
+*/
 export const deleteAllUsers = (req,res) =>{
     userModel.deleteMany({ email: 'test@test.com' }, (err) => {
         if (err) {
