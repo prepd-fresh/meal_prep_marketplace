@@ -23,6 +23,7 @@ Vue.component('noSearch-layout', noSearch)
 
 //vue axios implementation (uses it to send data to server)
 Vue.prototype.$http = axios
+
 Vue.config.productionTip = false
 
 new Vue({

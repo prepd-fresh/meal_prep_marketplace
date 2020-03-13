@@ -29,6 +29,7 @@ export const showAllUsers = (req,res) =>{
         if (err) {
             res.send(err);
         }
+        console.log("test all users")
         res.send(JSON.stringify(userMap))
     });
 

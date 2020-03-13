@@ -1,4 +1,4 @@
-<template>
+  <template>
  <div >
     <b-form @submit.prevent="onSubmit" class="form"  >
       <h1 class="headerLogin">Please login to your Account</h1>
@@ -62,6 +62,8 @@ export default {
       this.$http
         .post(API_URL, {
           user: JSON.stringify(this.form)
+        }).catch((error) =>{
+          console.log(error)
         }).then(response =>{
           alert("something")
             alert(response)

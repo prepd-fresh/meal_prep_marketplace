@@ -104,7 +104,9 @@
 </template>
 
 <script>
+ const API_URL = 'http://localhost:3000/api/allusers'
 export default {
+  
     data() {
     return {
       //variables
@@ -133,8 +135,16 @@ export default {
         return true;
       }
     },
-    onSubmit(){
-      alert("Register")
+    onSubmit(evt){
+        
+          evt.preventDefault()
+      this.$http
+        .post(API_URL, {
+          user: JSON.stringify(this.form)
+        }).then(response =>{
+         // alert("something")
+            alert(response)
+        })
     }
   },
    computed: {
