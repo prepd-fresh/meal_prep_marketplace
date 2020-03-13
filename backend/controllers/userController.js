@@ -42,8 +42,8 @@ export const register = (req, res) =>{
 Login controller
 */
 export const loginUser = (req, res) =>{
-    console.log("test Login")
-    res.send("sent back data")
+    console.log(req.body)
+    res.send(req.body)
 }
 /*
 delete all users

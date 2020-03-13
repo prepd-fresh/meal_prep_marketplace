@@ -62,11 +62,10 @@ export default {
       this.$http
         .post(API_URL, {
           user: JSON.stringify(this.form)
-        }).catch((error) =>{
-          console.log(error)
         }).then(response =>{
-          alert("something")
-            alert(response)
+            console.log(response)
+        }).catch((error) =>{
+          console.log(error.response)
         })
     },
   }

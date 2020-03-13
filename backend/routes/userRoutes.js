@@ -18,7 +18,7 @@ const routes = (app) =>{
         
     },register)
     app.route('/api/login')
-    .get((req,res,next) =>{
+    .post((req,res,next) =>{
         next();
     },loginUser)
     
