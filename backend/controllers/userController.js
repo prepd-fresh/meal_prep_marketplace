@@ -61,6 +61,14 @@ export const loginUser = async (req, res) => {
         console.log(err)
     }
     //if the email exists then check if password match
+
+
+
+    ///IMPORTANT CHECK IF USER IS AN ADMIN HERE TOO 
+    //CHANGE USER MODAL TO HAVE AN ADMIN FEATURE AS WELL
+    //COMPANY ADD FORM 
+    //DISPLAY COMPANY 
+    //AND ALL ADMIN FEATURES
     if (user !== null) {
         try {
             //compares the two passwords togther one passwed from the user one gotten from the database
@@ -69,8 +77,8 @@ export const loginUser = async (req, res) => {
                     res.send(err)
                 } else {
                     if (value === true) {
-                      //  const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_TOKEN)
-                      //  res.status(200).json({ message: "true" , token: accessToken})
+                       const accessToken = jwt.sign(user.toJSON(), ACCESS_SECRET_TOKEN)
+                       res.status(200).json({ message: "true" , token: accessToken})
                     } else {
                         res.status(200).json({ message: "false" })
                     }
