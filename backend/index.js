@@ -5,7 +5,7 @@ import userRoutes from './routes/userRoutes'
 import companyRoutes from './routes/companyRoutes'
 import bodyParser from 'body-parser';
 import  cors from 'cors'
-
+require('dotenv').config()
 const app = express();
 
 

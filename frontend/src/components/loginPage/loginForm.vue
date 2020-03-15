@@ -51,9 +51,9 @@ export default {
     return {
       form: {
         email: "",
-        password: ""
+        password: "",
       },
-    
+      error:false
     };
   },
   methods:{ 
@@ -63,6 +63,11 @@ export default {
         .post(API_URL, {
           user: JSON.stringify(this.form)
         }).then(response =>{
+            if(response.data.message === "true"){
+              this.error = false;
+            }else{
+              this.error = true;
+            }
             console.log(response)
         }).catch((error) =>{
           console.log(error.response)
