@@ -11,29 +11,36 @@ var companySchema = exports.companySchema = new _mongoose.Schema({
     CompanyName: String,
     DeliveryLocations: [],
     DeliveryTimes: [],
-    OrderTimes: [],
+    OrderCutoff: [],
     OrderOptions: [{
         Subscription: Boolean,
         OneTimeOrder: Boolean,
         MYO: Boolean
     }],
-    PrceRange: String,
+    PriceRange: [{
+        lowest: String,
+        highest: String
+    }],
     BulkDiscount: Boolean,
-    NumberOfMeals: Number,
+    NumberOfMeals: String,
     OptionsMeals: [{
+        //changes these to strings **maybe
         BreakFast: Number,
         Lunch: Number,
         Dinner: Number,
         Snacks: Number
     }],
+    MenuChanges: Boolean,
     SizeOptions: Boolean,
     SizeDescription: String,
     OfferVegeraian: Boolean,
-    PaymentMethod: String,
+    PaymentMethod:[],
     DeliverCosts: Number,
     DeliverCostDescription: String,
     OtherProducts: Boolean,
-    OtherProductDescription: String
+    OtherProductDescription: String,
+    InstagramFollowers:Number,
+    AdvancedSearch:[]
 });
 
 var Company = (0, _mongoose.model)('Company', companySchema);

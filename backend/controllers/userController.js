@@ -6,17 +6,28 @@ import jwt from 'jsonwebtoken'
 
 //required for the session token generation
 require('dotenv').config();
-const ACCESS_SECRET_TOKEN = "yw3foDi547kQEHu2oCFZwd2tZBHYHBNLTWKgqs9v2B6ItEXgoegE0MQCB2NVzJcXaOzECo4gX7PT7iIYkkgH2Q"
 const userModel = mongoose.model('User', Schema.userSchema)
 
 function testUser() {
     var user = new userModel({
         email: "test@test.com",
         name: "testUName",
-        password: "testpassword"
+        password: "testpassword",
+        role:"user"
     })
     user.save((err) => {
         if (err) throw err;
+    })
+}
+function testAdmin(){
+    var user = new userModel({
+        email:"admin@gmail.com",
+        name:"Adamin",
+        passowrd:"admin",
+        role:"admin n"
+    })
+    user.save((err) =>{
+        if(err) throw err
     })
 }
 
@@ -24,18 +35,17 @@ export const createTestUser = (req, res) => {
     testUser();
     res.send("added user successfully")
 }
-
+export const  createAdminUser = (req, res) => {
+    testAdmin();
+    res.send("created Admin")
+}
 export const showAllUsers = (req, res) => {
-    userModel.find({}, function (err, user) {
-        var userMap = {};
-        user.forEach((users) => {
-            userMap[users._id] = user;
-        });
-        if (err) {
-            res.send(err);
+    userModel.collection.find({role: "user"}).toArray(function (err, user) {
+        if(err){
+            res.send("error")
+        }else{
+            res.send(user)
         }
-        console.log("test all users")
-        res.send(JSON.stringify(userMap))
     });
 
 
@@ -50,9 +60,6 @@ export const loginUser = async (req, res) => {
     var data = JSON.parse(req.body.user)
     var email = data.email
     var password = data.password
-
-    console.log(email)
-    console.log(password)
 
     //checks if the email exists
     try {
@@ -69,6 +76,7 @@ export const loginUser = async (req, res) => {
     //COMPANY ADD FORM 
     //DISPLAY COMPANY 
     //AND ALL ADMIN FEATURES
+    console.log(require('dotenv').config())
     if (user !== null) {
         try {
             //compares the two passwords togther one passwed from the user one gotten from the database
@@ -77,7 +85,7 @@ export const loginUser = async (req, res) => {
                     res.send(err)
                 } else {
                     if (value === true) {
-                       const accessToken = jwt.sign(user.toJSON(), ACCESS_SECRET_TOKEN)
+                       const accessToken = jwt.sign(user.toJSON(), process.eventNames.TOKEN)
                        res.status(200).json({ message: "true" , token: accessToken})
                     } else {
                         res.status(200).json({ message: "false" })
@@ -103,6 +111,16 @@ export const deleteAllUsers = (req, res) => {
         res.end();
     })
 }
+export const deleteAllAdmins = (req, res) => {
+    userModel.deleteMany({ email: 'test@test.com' }, (err) => {
+        if (err) {
+            res.send(err);
+        }
+        res.send("deleted all users")
+        res.end();
+    })
+}
+
 
 
 

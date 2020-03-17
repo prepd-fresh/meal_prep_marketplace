@@ -25,7 +25,13 @@ export default new VueRouter({
       name:"login",
       meta: {layout: "noSearch"},
       component: require("@/components/loginPage/loginForm").default
+    },{
+      path:"/admin",
+      name:"admin",
+      meta:{layout: "admin"},
+      component: require("@/components/adminPage/adminHome").default
     }
+    
 
   ]
 });

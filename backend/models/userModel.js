@@ -4,7 +4,8 @@ import {Document, Schema, Model, model} from "mongoose";
 export var userSchema = new Schema({
     email: String,
     name: String,
-    password: String
+    password: String,
+    role: String
 });
 
 //before saving the new user into the api database

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar class="navBar" toggleable="lg" type="dark" variant="info" >
-      <b-navbar-brand class="navBand" href="/">
+      <b-navbar-brand class="navBand" href="/admin">
         <b-img :src="images.logoSmall" class="logoSmall"></b-img>
       </b-navbar-brand>
 
@@ -9,9 +9,9 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/login" class="navBand">Login</b-nav-item>
-          <b-nav-item href="/register" class="navBand">Register</b-nav-item>
-          <b-nav-item href="/about" class="navBand">About</b-nav-item>
+          <b-nav-item href="/admin/#" class="navBand">Admin stuff</b-nav-item>
+          <b-nav-item href="/admin/#" class="navBand">Admin Stuff 2</b-nav-item>
+          <b-nav-item href="/admin/#" class="navBand">logout</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -113,4 +113,3 @@ export default {
     width: 100%;
   }
 }
-</style>
