@@ -28,12 +28,31 @@
                     </b-form-checkbox-group>
                 </b-form-group>
                 <b-row>
-                    <b-col> <b-form-select label="Cut off" v-model="time" :options="orderCutOffOptions"></b-form-select></b-col>
-                    <b-col><b-form-select label="Cut off" v-model="timeZone" :options="orderCutOffTimeZone"></b-form-select></b-col>
+                    <b-col><p>Time: </p><b-form-select  v-model="time" :options="orderCutOffOptions"></b-form-select></b-col>
+                    <b-col><p>Time Period:</p><b-form-select label="Cut off" v-model="timeZone" :options="orderCutOffTimeZone"></b-form-select></b-col>
 
                 </b-row>
-
-                {{form.cutOff}}
+                <b-form-group label="Payment Options:">
+                    <b-form-checkbox-group id="checkbox-group-2" v-model="form.paymentOptions" name="flavour-2">
+                        <b-form-checkbox value="Monday">Stripe</b-form-checkbox>
+                        <b-form-checkbox value="Tuesday">Paypal</b-form-checkbox>
+                        <b-form-checkbox value="Wednesday">Credit</b-form-checkbox>
+                        <b-form-checkbox value="Wednesday">Cash</b-form-checkbox>
+                        <b-form-checkbox value="Wednesday">None</b-form-checkbox>
+                    </b-form-checkbox-group>
+                </b-form-group>
+                <b-row>
+                    <b-col>
+                <b-form-group id="input-group-1" label="Lowest:" label-for="input-1" description="Please enter the lowest meal price">
+                    <b-form-input id="input-1" v-model="form.priceRange.lowest" type="number" required placeholder="Enter lowest Price"></b-form-input>
+                </b-form-group>
+                </b-col>
+                <b-col>
+                <b-form-group id="input-group-1" label="Highest:" label-for="input-1" description="Please enter the higest meal price">
+                    <b-form-input id="input-1" v-model="form.priceRange.highest" type="number" required placeholder="Enter highest Price"></b-form-input>
+                </b-form-group>
+                </b-col>
+                </b-row>
                 <button v-on:click="onSubmit">submit</button>
             </div>
         </b-modal>
@@ -67,7 +86,12 @@ export default {
                 name: '',
                 deliveryLocations: [],
                 deliveryTimes: [],
-                cutOff: "Add time and Time Zone values togehter "
+                cutOff: "Add time and Time Zone values togehter ",
+                paymentOptions: [],
+                priceRange:{
+                    lowest:'',
+                    highest:''
+                }
             },
             orderCutOffTimeZone:[
             {
