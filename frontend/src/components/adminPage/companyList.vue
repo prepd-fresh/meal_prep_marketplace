@@ -30,6 +30,36 @@
                 <td>
                     <strong>Options of Meals</strong>
                 </td>
+                <td>
+                    <strong>Menu Changes</strong>
+                </td>
+                <td>
+                    <strong>Size Options</strong>
+                </td>
+                <td>
+                    <strong>Size Description</strong>
+                </td>
+                <td>
+                    <strong>Offer Vegertarian</strong>
+                </td>
+                <td>
+                    <strong>Payment Method</strong>
+                </td>
+                <td>
+                    <strong>Delivery Costs</strong>
+                </td>
+                <td>
+                    <strong>Description</strong>
+                </td>
+                <td>
+                    <strong>Other Products</strong>
+                </td>
+                <td>
+                    <strong>Instagram Followers</strong>
+                </td>
+                <td>
+                    <strong>Advanced Search</strong>
+                </td>
             </tr>
         </b-thead>
         <tbody>
@@ -82,6 +112,40 @@
                         <li>Dinner: {{option.Dinner}}</li>
                         <li>Snacks: {{option.Snacks}}</li>
                     </ul>
+                </td>
+                <td>
+                    <p>{{company.MenuChanges}}</p>
+                </td>
+                <td>
+                    <p>{{company.SizeOptions}}</p>
+                </td>
+                <td>
+                    <p>{{company.SizeDescription}}</p>
+                </td>
+                <td>
+                    <p>{{company.OfferVegeraian}}</p>
+                </td>
+                <td>
+                    <ul>
+                        <li v-for="(method, index) in company.PaymentMethod" v-bind:key= index.id>
+                            {{method}}
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    {{company.DeliverCosts}}
+                </td>
+                <td>
+                    <p>{{company.DeliverCostDescription}}</p>
+                </td>
+                <td>
+                    <p>{{company.OtherProducts}}</p>
+                </td>
+                <td>
+                    <p>{{company.OtherProductDescription}}</p>
+                </td>
+                <td>
+                    <p>{{company.InstagramFollowers}}</p> 
                 </td>
             </tr>
         </tbody>
