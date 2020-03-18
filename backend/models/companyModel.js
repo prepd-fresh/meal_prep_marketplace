@@ -10,7 +10,7 @@ var _mongoose = require("mongoose");
 var companySchema = exports.companySchema = new _mongoose.Schema({
     CompanyName: String,
     DeliveryLocations: [],
-    DeliveryTimes: [],
+    DeliveryTimes: String,
     OrderCutoff: [],
     OrderOptions: [{
         Subscription: Boolean,

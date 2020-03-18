@@ -10,7 +10,7 @@
                     <strong>Delivery Location</strong>
                 </td>
                 <td>
-                    <strong>Delivery Times</strong>
+                    <strong>Delivery Days</strong>
                 </td>
                 <td>
                     <strong>Order Cut off</strong>
@@ -60,6 +60,12 @@
                 <td>
                     <strong>Advanced Search</strong>
                 </td>
+                <td>
+                    <strong>Edit</strong>
+                </td>
+                <td>
+                    <Strong>Delete</Strong>
+                </td>
             </tr>
         </b-thead>
         <tbody>
@@ -68,13 +74,20 @@
                     <p>{{company.CompanyName}}</p>
                 </td>
                 <td>
-                    <p>{{company.DeliveryLocations}}</p>
+                    <ul v-for="(location , index) in company.DeliveryLocations" v-bind:key="index.id">
+                        <li>{{location}}</li>
+                    </ul>
                 </td>
                 <td>
-                    <p>{{company.DeliveryTimes}}</p>
+                    <ul v-for="(days , index) in company.DeliveryTimes" v-bind:key="index.id">
+                        <li>{{days}}</li>
+                    </ul>
                 </td>
                 <td>
-                    <p>{{company.OrderCutoff}}</p>
+                    <ul v-for="(times, index) in company.OrderCutoff" v-bind:key="index.ind">
+                        <li>{{times}}</li>
+                    </ul>
+
                 </td>
                 <td>
                     <ul v-for="(orderOptions, index) in company.OrderOptions" v-bind:key="index.id">
@@ -106,7 +119,7 @@
                     <p>{{company.NumberOfMeals}}</p>
                 </td>
                 <td>
-                    <ul v-for="(option, index) in company.OptionsMeals" v-bind:key= index.id>
+                    <ul v-for="(option, index) in company.OptionsMeals" v-bind:key=index.id>
                         <li>Breakfast: {{option.BreakFast}}</li>
                         <li>Lunch: {{option.Lunch}}</li>
                         <li>Dinner: {{option.Dinner}}</li>
@@ -127,7 +140,7 @@
                 </td>
                 <td>
                     <ul>
-                        <li v-for="(method, index) in company.PaymentMethod" v-bind:key= index.id>
+                        <li v-for="(method, index) in company.PaymentMethod" v-bind:key=index.id>
                             {{method}}
                         </li>
                     </ul>
@@ -142,10 +155,20 @@
                     <p>{{company.OtherProducts}}</p>
                 </td>
                 <td>
+                    <p>{{company.InstagramFollowers}}</p>
+                </td>
+                <td>
                     <p>{{company.OtherProductDescription}}</p>
                 </td>
                 <td>
-                    <p>{{company.InstagramFollowers}}</p> 
+
+                    <BIconPencil class="edit" scale="1.4"  />
+
+                </td>
+                <td>
+
+                    <BIconTrash class="delete" scale="1.4" />
+
                 </td>
             </tr>
         </tbody>
@@ -155,11 +178,20 @@
 
 <script>
 var API_URL = 'http://localhost:3000/api/allCompanys'
+import {
+    BIconTrash,
+    BIconPencil
+} from 'bootstrap-vue'
+
 export default {
     data() {
         return {
             companys: ""
         }
+    },
+    components: {
+        BIconTrash,
+        BIconPencil
     },
     created: function () {
         this.$http.get(API_URL)
@@ -175,5 +207,26 @@ export default {
 </script>
 
 <style>
+.edit { 
+    padding: 30px;
+    color:black;
+}
+.edit:hover{
+    
+}
+.delete{
+    padding: 30px;
+    color:black
 
+}
+.delete:hover{
+    color: red;
+}
+.table{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.table td{
+    padding:30px;
+}
 </style>
