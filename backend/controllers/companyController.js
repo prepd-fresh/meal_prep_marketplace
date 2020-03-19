@@ -6,38 +6,29 @@ const companyModel = mongoose.model('Company', Schema.companySchema)
 function company(){
     console.log("tester")
     var company = new companyModel({
-        CompanyName: "Test company",
-        DeliveryLocations: ["GTA", "HAMILTON"],
-        DeliveryTimes: ["sundays", "fridays"],
-        OrderCutoff: ["7pm"],
-        OrderOptions: [{
-            Subscription: true,
-            OneTimeOrder: false,
-            MYO: true
+        name: 'Test',
+        deliveryLocations: [`GTA`,`Brampton`],
+        deliveryDays: ['Monday',`Wednesday`],
+        cutOff: "Add time and Time Zone values togehter ",
+        paymentOptions: ['cash', 'Credit card'],
+        priceRange: {
+            lowest: '9.99',
+            highest: '15.99'
+        },
+        bulkDiscount: 'true',
+        numberOfMeals: '10',
+        mealOptions: [{
+            breakFast: '1',
+            lunch: 'none',
+            dinner: '8',
+            snacks: '1'
         }],
-        PriceRange: [{
-            lowest: "5.29",
-            highest: "11.99"
-        }],
-        BulkDiscount: true,
-        NumberOfMeals: 20,
-        OptionsMeals: [{
-            BreakFast: 5,
-            Lunch: 5,
-            Dinner: 5,
-            Snacks: 5
-        }],
-        MenuChanges:true,
-        SizeOptions: true,
-        SizeDescription: "Extra protien",
-        OfferVegeraian: true,
-        PaymentMethod:["stripe", "paypal"],
-        DeliverCosts: 15.99,
-        DeliverCostDescription: "delivery only on saturdays",
-        OtherProducts: true,
-        OtherProductDescription:"catering for offices",
-        InstagramFollowers: 21000,
-        AdvancedSearch:["vegan", "vegie", "subscription"]
+        menuChanges: 'true',
+        sizeOptions: 'false',
+        vegetarian: 'true',
+        extraProtien: 'true',
+        vegan: 'false',
+        instagramFollowers: '100000'
     });
     company.save((err) =>{
         if(err) throw err

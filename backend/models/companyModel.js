@@ -8,39 +8,29 @@ exports.companySchema = undefined;
 var _mongoose = require("mongoose");
 
 var companySchema = exports.companySchema = new _mongoose.Schema({
-    CompanyName: String,
-    DeliveryLocations: [],
-    DeliveryTimes: String,
-    OrderCutoff: [],
-    OrderOptions: [{
-        Subscription: Boolean,
-        OneTimeOrder: Boolean,
-        MYO: Boolean
-    }],
-    PriceRange: [{
+    name: String,
+    deliveryLocations: [],
+    deliveryDays: [],
+    cutOff:String,
+    paymentOptions: [],
+    priceRange: {
         lowest: String,
         highest: String
+    },
+    bulkDiscount: String,
+    numberOfMeals:String,
+    mealOptions: [{
+        breakFast: String,
+        lunch: String,
+        dinner: String,
+        snacks: String
     }],
-    BulkDiscount: Boolean,
-    NumberOfMeals: String,
-    OptionsMeals: [{
-        //changes these to strings **maybe
-        BreakFast: Number,
-        Lunch: Number,
-        Dinner: Number,
-        Snacks: Number
-    }],
-    MenuChanges: Boolean,
-    SizeOptions: Boolean,
-    SizeDescription: String,
-    OfferVegeraian: Boolean,
-    PaymentMethod:[],
-    DeliverCosts: Number,
-    DeliverCostDescription: String,
-    OtherProducts: Boolean,
-    OtherProductDescription: String,
-    InstagramFollowers:Number,
-    AdvancedSearch:[]
+    menuChanges: String,
+    sizeOptions: String,
+    vegetarian: String,
+    extraProtien: String,
+    vegan: String,
+    instagramFollowers: String
 });
 
 var Company = (0, _mongoose.model)('Company', companySchema);

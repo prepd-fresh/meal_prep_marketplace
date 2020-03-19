@@ -28,31 +28,92 @@
                     </b-form-checkbox-group>
                 </b-form-group>
                 <b-row>
-                    <b-col><p>Time: </p><b-form-select  v-model="time" :options="orderCutOffOptions"></b-form-select></b-col>
-                    <b-col><p>Time Period:</p><b-form-select label="Cut off" v-model="timeZone" :options="orderCutOffTimeZone"></b-form-select></b-col>
+                    <b-col>
+                        <p>Time: </p>
+                        <b-form-select v-model="time" :options="orderCutOffOptions"></b-form-select>
+                    </b-col>
+                    <b-col>
+                        <p>Time Period:</p>
+                        <b-form-select label="Cut off" v-model="timeZone" :options="orderCutOffTimeZone"></b-form-select>
+                    </b-col>
 
                 </b-row>
                 <b-form-group label="Payment Options:">
                     <b-form-checkbox-group id="checkbox-group-2" v-model="form.paymentOptions" name="flavour-2">
-                        <b-form-checkbox value="Monday">Stripe</b-form-checkbox>
-                        <b-form-checkbox value="Tuesday">Paypal</b-form-checkbox>
-                        <b-form-checkbox value="Wednesday">Credit</b-form-checkbox>
-                        <b-form-checkbox value="Wednesday">Cash</b-form-checkbox>
-                        <b-form-checkbox value="Wednesday">None</b-form-checkbox>
+                        <b-form-checkbox value="Stripe">Stripe</b-form-checkbox>
+                        <b-form-checkbox value="Paypal">Paypal</b-form-checkbox>
+                        <b-form-checkbox value="Credit card">Credit card</b-form-checkbox>
+                        <b-form-checkbox value="cash">Cash</b-form-checkbox>
+                        <b-form-checkbox value="E-Transfer">e-transfer</b-form-checkbox>
+                        <b-form-checkbox value="none">None</b-form-checkbox>
                     </b-form-checkbox-group>
                 </b-form-group>
                 <b-row>
                     <b-col>
-                <b-form-group id="input-group-1" label="Lowest:" label-for="input-1" description="Please enter the lowest meal price">
-                    <b-form-input id="input-1" v-model="form.priceRange.lowest" type="number" required placeholder="Enter lowest Price"></b-form-input>
-                </b-form-group>
-                </b-col>
-                <b-col>
-                <b-form-group id="input-group-1" label="Highest:" label-for="input-1" description="Please enter the higest meal price">
-                    <b-form-input id="input-1" v-model="form.priceRange.highest" type="number" required placeholder="Enter highest Price"></b-form-input>
-                </b-form-group>
-                </b-col>
+                        <b-form-group id="input-group-1" label="Lowest:" label-for="input-1" description="Please enter the lowest meal price">
+                            <b-form-input id="input-1" v-model="form.priceRange.lowest" type="number" required placeholder="Enter lowest Price"></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group id="input-group-1" label="Highest:" label-for="input-1" description="Please enter the higest meal price">
+                            <b-form-input id="input-1" v-model="form.priceRange.highest" type="number" required placeholder="Enter highest Price"></b-form-input>
+                        </b-form-group>
+                    </b-col>
                 </b-row>
+                <b-form-group label="Bulk Discount">
+                    <b-form-radio v-model="form.bulkDiscount" name="some-radios" value="True">Yes</b-form-radio>
+                    <b-form-radio v-model="form.bulkDiscount" name="some-radios" value="False">No</b-form-radio>
+                </b-form-group>
+                <b-form-group id="input-group-1" label="Number of Meals" label-for="input-1" description="number of meals the company offers">
+                    <b-form-input id="input-1" v-model="form.numberOfMeals" type="number" required placeholder="Number of meals"></b-form-input>
+                </b-form-group>
+                <b-row>
+                    <b-col>
+                        <p>BreakFast: </p>
+                        <b-form-select v-model="form.mealOptions.breakFast" :options="mealOptions"></b-form-select>
+                    </b-col>
+                    <b-col>
+                        <p>Lunch:</p>
+                        <b-form-select label="Cut off" v-model="form.mealOptions.lunch" :options=" mealOptions"></b-form-select>
+                    </b-col>
+                    <b-col>
+                        <p>Dinner:</p>
+                        <b-form-select label="Cut off" v-model="form.mealOptions.dinner" :options=" mealOptions"></b-form-select>
+                    </b-col>
+                    <b-col>
+                        <p>Snacks:</p>
+                        <b-form-select label="Cut off" v-model="form.mealOptions.snacks" :options=" mealOptions"></b-form-select>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <b-form-group label="Menu Changes:">
+                            <b-form-radio v-model="form.menuChanges" name="some-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.menuChanges" name="some-radios" value="False">No</b-form-radio>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group label="Size Options:">
+                            <b-form-radio v-model="form.sizeOptions" name="some-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.sizeOptions" name="some-radios" value="False">No</b-form-radio>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group label="Vegatarian:">
+                            <b-form-radio v-model="form.vegetarian" name="some-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.vegetarian" name="some-radios" value="False">No</b-form-radio>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>
+                        <b-form-group label="Extra Protien:">
+                            <b-form-radio v-model="form.extraProtien" name="some-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.extraProtien" name="some-radios" value="False">No</b-form-radio>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+                <b-form-group id="input-group-1" label="Intagram Followers: " label-for="input-1" description="Please enter the higest meal price">
+                    <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter highest Price"></b-form-input>
+                </b-form-group>
                 <button v-on:click="onSubmit">submit</button>
             </div>
         </b-modal>
@@ -80,27 +141,80 @@ import companyList from "./companyList"
 export default {
     data() {
         return {
-          time:null,
-          timeZone:null,
-          form: {
+            time: null,
+            timeZone: null,
+            form: {
                 name: '',
                 deliveryLocations: [],
                 deliveryTimes: [],
                 cutOff: "Add time and Time Zone values togehter ",
                 paymentOptions: [],
-                priceRange:{
-                    lowest:'',
-                    highest:''
-                }
+                priceRange: {
+                    lowest: '',
+                    highest: ''
+                },
+                bulkDiscount: null,
+                numberOfMeals: '',
+                mealOptions: [{
+                    breakFast: '',
+                    lunch: '',
+                    dinner: '',
+                    snacks: ''
+                }],
+                menuChanges: '',
+                sizeOptions: '',
+                vegetarian: '',
+                extraProtien: '',
+                vegan: '',
+                instagramFollowers: ''
             },
-            orderCutOffTimeZone:[
-            {
-              value: 'AM',
-              text: 'AM'
-            },{
-              value: 'PM',
-              text:'PM'
+            orderCutOffTimeZone: [{
+                value: 'AM',
+                text: 'AM'
+            }, {
+                value: 'PM',
+                text: 'PM'
             }],
+            mealOptions: [{
+                    value: 'None',
+                    text: 'none'
+                }, {
+                    value: '1',
+                    text: '1'
+                },
+                {
+                    value: '2',
+                    text: '2'
+                },
+                {
+                    value: '3',
+                    text: '3',
+                },
+                {
+                    value: '4',
+                    text: '4'
+                },
+                {
+                    value: '5',
+                    text: '5',
+                }, {
+                    value: '6',
+                    text: '6',
+                }, {
+                    value: '7',
+                    text: '7',
+                }, {
+                    value: '8',
+                    text: '8',
+                }, {
+                    value: '9',
+                    text: '9',
+                }, {
+                    value: '10 +',
+                    text: '10 +',
+                },
+
+            ],
             orderCutOffOptions: [{
                     value: '1',
                     text: '1'

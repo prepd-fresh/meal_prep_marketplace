@@ -16,7 +16,7 @@
                     <strong>Order Cut off</strong>
                 </td>
                 <td>
-                    <strong>Order Options</strong>
+                    <strong>PaymentOptions</strong>
                 </td>
                 <td>
                     <strong>Price Range</strong>
@@ -28,7 +28,7 @@
                     <strong>Number of Meals</strong>
                 </td>
                 <td>
-                    <strong>Options of Meals</strong>
+                    <strong>Meal Options</strong>
                 </td>
                 <td>
                     <strong>Menu Changes</strong>
@@ -37,28 +37,16 @@
                     <strong>Size Options</strong>
                 </td>
                 <td>
-                    <strong>Size Description</strong>
+                    <strong>Vegertarian</strong>
                 </td>
                 <td>
-                    <strong>Offer Vegertarian</strong>
+                    <strong>Extra Protien</strong>
                 </td>
                 <td>
-                    <strong>Payment Method</strong>
-                </td>
-                <td>
-                    <strong>Delivery Costs</strong>
-                </td>
-                <td>
-                    <strong>Description</strong>
-                </td>
-                <td>
-                    <strong>Other Products</strong>
+                    <strong>Vegan</strong>
                 </td>
                 <td>
                     <strong>Instagram Followers</strong>
-                </td>
-                <td>
-                    <strong>Advanced Search</strong>
                 </td>
                 <td>
                     <strong>Edit</strong>
@@ -71,94 +59,61 @@
         <tbody>
             <tr v-for="(company, index) in companys" v-bind:key="index.id">
                 <td>
-                    <p>{{company.CompanyName}}</p>
+                    <p>{{company.name}}</p>
                 </td>
                 <td>
-                    <ul v-for="(location , index) in company.DeliveryLocations" v-bind:key="index.id">
+                    <ul v-for="(location , index) in company.deliveryLocations" v-bind:key="index.id">
                         <li>{{location}}</li>
                     </ul>
                 </td>
                 <td>
-                    <ul v-for="(days , index) in company.DeliveryTimes" v-bind:key="index.id">
+                    <ul v-for="(days , index) in company.deliveryDays" v-bind:key="index.id">
                         <li>{{days}}</li>
                     </ul>
                 </td>
                 <td>
-                    <ul v-for="(times, index) in company.OrderCutoff" v-bind:key="index.ind">
-                        <li>{{times}}</li>
-                    </ul>
-
+                    <p>{{company.cutOff}}</p>
                 </td>
                 <td>
-                    <ul v-for="(orderOptions, index) in company.OrderOptions" v-bind:key="index.id">
-                        <li>
-                            Subscription: {{orderOptions.Subscription}}
-                        </li>
-                        <li>
-                            One time: {{orderOptions.OneTimeOrder}}
-                        </li>
-                        <li>
-                            MYO: {{orderOptions.MYO}}
-                        </li>
+                    <ul v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
+                        <li>{{option}}</li>
                     </ul>
                 </td>
                 <td>
-                    <ul v-for="(price, index) in company.PriceRange" v-bind:key="index.id">
-                        <li>
-                            Lowest: {{price.lowest}}
-                        </li>
-                        <li>
-                            highest: {{price.highest}}
-                        </li>
+                    <p>Lowest: {{company.priceRange.lowest}}</p>
+                    <p>Highest: {{company.priceRange.highest}}</p>
+                </td>
+                <td>
+                    <p>{{company.bulkDiscount}}</p>
+                </td>
+                <td>
+                    <p>{{company.numberOfMeals}}</p>
+                </td>
+                <td>
+                    <ul v-for="(option, index) in company.mealOptions" v-bind:key=index.id>
+                        <li>Breakfast: {{option.breakFast}}</li>
+                        <li>Lunch: {{option.lunch}}</li>
+                        <li>Dinner: {{option.dinner}}</li>
+                        <li>Snacks: {{option.snacks}}</li>
                     </ul>
                 </td>
                 <td>
-                    <p>{{company.BulkDiscount}}</p>
+                    <p>{{company.menuChanges}}</p>
                 </td>
                 <td>
-                    <p>{{company.NumberOfMeals}}</p>
+                    <p>{{company.sizeOptions}}</p>
                 </td>
                 <td>
-                    <ul v-for="(option, index) in company.OptionsMeals" v-bind:key=index.id>
-                        <li>Breakfast: {{option.BreakFast}}</li>
-                        <li>Lunch: {{option.Lunch}}</li>
-                        <li>Dinner: {{option.Dinner}}</li>
-                        <li>Snacks: {{option.Snacks}}</li>
-                    </ul>
+                    <p>{{company.vegetarian}}</p>
                 </td>
                 <td>
-                    <p>{{company.MenuChanges}}</p>
+                    <p>{{company.extraProtien}}</p>
                 </td>
                 <td>
-                    <p>{{company.SizeOptions}}</p>
+                  <p>{{company.vegan}}</p>
                 </td>
                 <td>
-                    <p>{{company.SizeDescription}}</p>
-                </td>
-                <td>
-                    <p>{{company.OfferVegeraian}}</p>
-                </td>
-                <td>
-                    <ul>
-                        <li v-for="(method, index) in company.PaymentMethod" v-bind:key=index.id>
-                            {{method}}
-                        </li>
-                    </ul>
-                </td>
-                <td>
-                    {{company.DeliverCosts}}
-                </td>
-                <td>
-                    <p>{{company.DeliverCostDescription}}</p>
-                </td>
-                <td>
-                    <p>{{company.OtherProducts}}</p>
-                </td>
-                <td>
-                    <p>{{company.InstagramFollowers}}</p>
-                </td>
-                <td>
-                    <p>{{company.OtherProductDescription}}</p>
+                    {{company.instagramFollowers}}
                 </td>
                 <td>
 
