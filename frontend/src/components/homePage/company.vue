@@ -9,8 +9,15 @@
       <b-col md="6">
         <b-card-body >
           <b-card-text>
-            <h4 class = "header">{{idNumber}} Example of comapny</h4>
-            <companyMainInfo/>
+            <h4 class = "header">{{company.name}}{{idNumber}}</h4>
+            <h5>Delivery locations: </h5>
+              <ul v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
+                <li>{{location}}</li>
+              </ul>
+              <h5>Payment Options</h5>
+              <ul v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
+                <li>{{option}}</li>
+              </ul>
           </b-card-text>
         </b-card-body>
       </b-col>
@@ -34,21 +41,21 @@
 
 <script>
 import companyInfo from './companyInfo'
-import companyMainInfo from './companyMainInfo'
 export default {
   data() {
     return {
+
       images: {
         foodPicture: require("../../assets/images/burrito.jpg")
       }
     };
   },
   props: {
-    idNumber: Number
+    idNumber: Number,
+    company: {}
   },
   components:{
     companyInfo,
-    companyMainInfo
   },
   methods: {}
 };

@@ -112,7 +112,7 @@
                     </b-col>
                 </b-row>
                 <b-form-group id="input-group-1" label="Intagram Followers: " label-for="input-1" description="Please enter the higest meal price">
-                    <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter highest Price"></b-form-input>
+                    <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter number of Instagram followers"></b-form-input>
                 </b-form-group>
                 <b-button v-on:click="onSubmit" variant="outline-primary" >submit</b-button>
             </div>
