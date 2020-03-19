@@ -1,7 +1,9 @@
 import {
     createCompany,
     allCompany,
-    deleteComapny
+    deleteCompany,
+    deleteAllComapny,
+    addCompany
 }from '../controllers/companyController'
 
 const routes = (app) =>{
@@ -18,6 +20,16 @@ const routes = (app) =>{
     app.route('/api/deleteComapny')
     .get((req,res,next) =>{
         next();
-    },deleteComapny)
+    },deleteAllComapny)
+
+    app.route('/api/addcompany')
+    .post((req,res,next) =>{
+        next();
+    },addCompany)
+
+    app.route('/api/delete-company')
+    .post((req, res, next) =>{
+        next();
+    }, deleteCompany)
 }
 export default routes

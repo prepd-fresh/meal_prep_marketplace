@@ -117,12 +117,12 @@
                 </td>
                 <td>
 
-                    <BIconPencil class="edit" scale="1.4"  />
+                    <BIconPencil class="edit" scale="1.4" v-on:click ="editCompany(company._id)"  />
 
                 </td>
                 <td>
 
-                    <BIconTrash class="delete" scale="1.4" />
+                    <BIconTrash class="delete" scale="1.4" v-on:click="deleteCompany(company._id)" />
 
                 </td>
             </tr>
@@ -133,6 +133,7 @@
 
 <script>
 var API_URL = 'http://localhost:3000/api/allCompanys'
+var API_URL_DELETE = 'http://localhost:3000/api/delete-company'
 import {
     BIconTrash,
     BIconPencil
@@ -141,7 +142,7 @@ import {
 export default {
     data() {
         return {
-            companys: ""
+            companys:[]
         }
     },
     components: {
@@ -152,11 +153,32 @@ export default {
         this.$http.get(API_URL)
             .then(response => {
                 this.companys = response.data
-                console.log(this.company)
-                console.log(this.company.CompanyName)
             }).catch(error => {
                 console.log(error.response)
             })
+    },
+    methods:{
+        deleteCompany: function(id){
+            this.$http.post(
+                API_URL_DELETE,{
+                    companyID:JSON.stringify(id)
+                }
+            ).then(response =>{
+                if(response.data.message === "true"){
+                    const index = this.companys.findIndex(company => company._id === id)
+                    console.log(index)
+                    if(~index){
+                        this.companys.splice(index,1)
+                    }
+
+                }
+            })
+     
+        },
+        editCompany: function(id){
+          const index = this.companys.findIndex(company => company._id === id)
+                    console.log(index)
+        }
     }
 }
 </script>
@@ -167,7 +189,7 @@ export default {
     color:black;
 }
 .edit:hover{
-    
+    color:red;
 }
 .delete{
     padding: 30px;

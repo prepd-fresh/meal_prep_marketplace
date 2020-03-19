@@ -88,33 +88,33 @@
                 <b-row>
                     <b-col>
                         <b-form-group label="Menu Changes:">
-                            <b-form-radio v-model="form.menuChanges" name="some-radios" value="True">Yes</b-form-radio>
-                            <b-form-radio v-model="form.menuChanges" name="some-radios" value="False">No</b-form-radio>
+                            <b-form-radio v-model="form.menuChanges" name="menuChange-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.menuChanges" name="menuChange-radios" value="False">No</b-form-radio>
                         </b-form-group>
                     </b-col>
                     <b-col>
                         <b-form-group label="Size Options:">
-                            <b-form-radio v-model="form.sizeOptions" name="some-radios" value="True">Yes</b-form-radio>
-                            <b-form-radio v-model="form.sizeOptions" name="some-radios" value="False">No</b-form-radio>
+                            <b-form-radio v-model="form.sizeOptions" name="sizeOptions-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.sizeOptions" name="sizeOptions-radios" value="False">No</b-form-radio>
                         </b-form-group>
                     </b-col>
                     <b-col>
                         <b-form-group label="Vegatarian:">
-                            <b-form-radio v-model="form.vegetarian" name="some-radios" value="True">Yes</b-form-radio>
-                            <b-form-radio v-model="form.vegetarian" name="some-radios" value="False">No</b-form-radio>
+                            <b-form-radio v-model="form.vegetarian" name="vegOption-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.vegetarian" name="vegOption-radios" value="False">No</b-form-radio>
                         </b-form-group>
                     </b-col>
                     <b-col>
                         <b-form-group label="Extra Protien:">
-                            <b-form-radio v-model="form.extraProtien" name="some-radios" value="True">Yes</b-form-radio>
-                            <b-form-radio v-model="form.extraProtien" name="some-radios" value="False">No</b-form-radio>
+                            <b-form-radio v-model="form.extraProtien" name="extraProtien-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.extraProtien" name="extraProtien-radoos" value="False">No</b-form-radio>
                         </b-form-group>
                     </b-col>
                 </b-row>
                 <b-form-group id="input-group-1" label="Intagram Followers: " label-for="input-1" description="Please enter the higest meal price">
                     <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter highest Price"></b-form-input>
                 </b-form-group>
-                <button v-on:click="onSubmit">submit</button>
+                <b-button v-on:click="onSubmit" variant="outline-primary" >submit</b-button>
             </div>
         </b-modal>
     </div>
@@ -124,7 +124,7 @@
                 <userList />
             </b-tab>
             <b-tab title="Company List">
-                <companyList />
+                <companyList v-if="reloader"/>
             </b-tab>
             <b-tab title="comments">
                 <p>will show comments here</p>
@@ -138,15 +138,17 @@
 <script>
 import userList from "./userList"
 import companyList from "./companyList"
+const API_URL = "http://localhost:3000/api/addcompany"
 export default {
     data() {
         return {
             time: null,
             timeZone: null,
+            reloader: true,
             form: {
                 name: '',
                 deliveryLocations: [],
-                deliveryTimes: [],
+                deliveryDays: [],
                 cutOff: "Add time and Time Zone values togehter ",
                 paymentOptions: [],
                 priceRange: {
@@ -268,8 +270,22 @@ export default {
     },
     methods: {
         onSubmit: function () {
-            console.log(this.form)
-        }
+            this.$http
+            .post(
+                API_URL,{
+                    company: JSON.stringify(this.form)
+                }
+            ).then(responces =>{
+                if(responces.data.message === "true"){
+                    this.reloader = false;
+
+                    this.$nextTick(()=>{
+                        this.reloader = true;
+                    })
+                }
+            })
+        },
+
     }
 }
 </script>
@@ -286,4 +302,5 @@ export default {
 #custom-select {
     width: 10% !important;
 }
+
 </style>

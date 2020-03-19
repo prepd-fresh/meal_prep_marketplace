@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import Schema from '../models/companyModel'
-
+import mongodb from 'mongodb'
 const companyModel = mongoose.model('Company', Schema.companySchema)
 
 function company(){
@@ -39,6 +39,40 @@ export const createCompany = (req, res) =>{
     company()
     res.send("company created")
 }
+export const addCompany = (req,res) =>{
+    const company = JSON.parse(req.body.company)
+    console.log(company)
+    var companyData = new companyModel({
+        name: company.name,
+        deliveryLocations: company.deliveryLocations,
+        deliveryDays: company.deliveryDays,
+        cutOff: company.cutOff,
+        paymentOptions: company.paymentOptions,
+        priceRange: {
+            lowest: company.priceRange.lowest,
+            highest: company.priceRange.highest
+        },
+        bulkDiscount: company.bulkDiscount,
+        numberOfMeals: company.numberOfMeals,
+        mealOptions: [{
+            breakFast: company.mealOptions.breakFast,
+            lunch: company.mealOptions.lunch,
+            dinner: company.mealOptions.dinner,
+            snacks: company.mealOptions.snacks
+        }],
+        menuChanges: company.menuChanges,
+        sizeOptions: company.menuChanges,
+        vegetarian: company.vegetarian,
+        extraProtien: company.extraProtien,
+        vegan: company.vegan,
+        instagramFollowers: company.instagramFollowers
+    });
+    companyData.save((err) =>{
+        if(err) throw err
+    })
+    res.status(200).json({ message: "true" })
+    res.end();
+}
 
 
 export const allCompany = (req, res) =>{
@@ -51,7 +85,7 @@ export const allCompany = (req, res) =>{
     })
 }
 
-export const deleteComapny = (req, res) =>{
+export const deleteAllComapny = (req, res) =>{
     companyModel.deleteMany({}, (err) =>{
         if(err){
             res.send(err)
@@ -59,5 +93,18 @@ export const deleteComapny = (req, res) =>{
         res.send("deleted all companys")
         res.send();
     });
+}
+
+
+export const deleteCompany = (req,  res )=>{
+    const companyID = JSON.parse(req.body.companyID)
+    companyModel.deleteOne({_id: new mongodb.ObjectID(companyID)}, (err) =>{
+        if(err){
+            res.send(err)
+        }
+        res.status(200).json({ message: "true" })
+        
+    })
+    
 }
 
