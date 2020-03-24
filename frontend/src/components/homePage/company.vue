@@ -9,7 +9,7 @@
       <b-col md="6">
         <b-card-body >
           <b-card-text>
-            <h4 class = "header">{{company.name}}{{idNumber}}</h4>
+            <h4 class = "header">{{company.name}}</h4>
             <h5>Delivery locations: </h5>
               <ul v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
                 <li>{{location}}</li>
@@ -26,16 +26,17 @@
 </div>
 <div>
     <b-modal :id="'bv-modal-'+idNumber" size="l" hide-footer>
-      <template v-slot:modal-title>Company : {{idNumber}}</template>
+      <template v-slot:modal-title>{{company.name}}</template>
       <b-card-group deck>
         <b-card :img-src="images.foodPicture" class="cardImage" img-alt="Card image" img-top>
           <b-card-text>
-            <companyInfo/>
+            <companyInfo :companyInformation ="companyInformation" />
           </b-card-text>
         </b-card>
       </b-card-group>
     </b-modal>
   </div>
+
   </div>
 </template>
 
@@ -44,6 +45,7 @@ import companyInfo from './companyInfo'
 export default {
   data() {
     return {
+      companyInformation : this.company,
 
       images: {
         foodPicture: require("../../assets/images/burrito.jpg")
@@ -57,7 +59,9 @@ export default {
   components:{
     companyInfo,
   },
-  methods: {}
+
+  
+
 };
 </script>
 

@@ -2,16 +2,16 @@
   <div>
     <b-tabs content-class="mt-3">
       <b-tab title="Payment Options">
-        <paymentOptions />
+        <paymentOptions :paymentInfo ="paymentInfo" />
       </b-tab>
-      <b-tab title="Menu">
-        <companyMenu/>
+      <b-tab title="Menu Options" >
+        <companyMenu :companyMenuOptions ="companyMenuOptions" />
       </b-tab>
-      <b-tab title="Comapny website">
-        <h2>website link</h2>
+      <b-tab title="Reviews">
+        <review/>
       </b-tab>
       <b-tab title="location">
-        <companyLocation/>
+        <companyLocation :companyLocationOptions ="companyLocationOptions"/>
       </b-tab>
     </b-tabs>
     
@@ -23,17 +23,41 @@
 import paymentOptions from "./companyComponents/paymentOptions"
 import companyLocation from "./companyComponents/companyLocation"
 import companyMenu from "./companyComponents/menu"
+import review from "./companyComponents/review"
 
 
 export default {
   data() {
-    return {};
+    return {
+        info: this.companyInformation,
+        //spliting all the data into sub groups and passing it down the component tree
+        paymentInfo:{
+          paymentOptions:  this.companyInformation.paymentOptions,
+          priceRange:  this.companyInformation.priceRange
+        },
+        companyMenuOptions:{
+           bulkDiscount: this.companyInformation.bulkDiscount,
+           menuChangesOption: this.companyInformation.menuChanges,
+           vegetarianOption: this.companyInformation.vegetarian,
+           extraProtienOption: this.companyInformation.extraProtien,
+           veganOption: this.companyInformation.vegan,
+           mealOptions:this.companyInformation.mealOptions,
+           numberOfMeals: this.companyInformation.numberOfMeals   
+        },
+         companyLocationOptions:{
+          deliveryOptions: this.companyInformation.deliveryLocations,
+          instagramFollowers: this.companyInformation.instagramFollowers
+        }
+    };
   },
   components: {
     paymentOptions,
     companyLocation,
-    companyMenu
-  }
+    companyMenu,
+    review
+  },
+  props: ['companyInformation'],
+
 };
 </script>
 

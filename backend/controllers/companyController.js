@@ -76,7 +76,7 @@ export const addCompany = (req,res) =>{
 
 
 export const allCompany = (req, res) =>{
-    companyModel.collection.find({}).toArray(function(err,company){
+    companyModel.collection.find({}).toArray( function(err,company){
         if(err){
             res.send("error")
         }else{
