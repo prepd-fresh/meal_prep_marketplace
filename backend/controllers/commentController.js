@@ -4,6 +4,7 @@ import mongodb from 'mongodb'
 
 const commentModel = mongoose.model('Comment', Schema.commentSchema)
 
+//export const addTestComment 
 
 
 

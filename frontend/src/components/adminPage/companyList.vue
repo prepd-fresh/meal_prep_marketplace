@@ -49,6 +49,9 @@
                     <strong>Instagram Followers</strong>
                 </td>
                 <td>
+                    <strong>Rating</strong>
+                </td>
+                <td>
                     <strong>Edit</strong>
                 </td>
                 <td>
@@ -72,7 +75,7 @@
                     </ul>
                 </td>
                 <td>
-                    <p>{{company.cutOff}}</p>
+                    <p>Cut OffTime: {{company.cutOff.time}}{{company.cutOff.zone}}</p>
                 </td>
                 <td>
                     <ul v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
@@ -90,7 +93,7 @@
                     <p>{{company.numberOfMeals}}</p>
                 </td>
                 <td>
-                    <ul v-for="(option, index) in company.mealOptions" v-bind:key=index.id>
+                    <ul  v-for="(option, index) in company.mealOptions" v-bind:key="index.id">
                         <li>Breakfast: {{option.breakFast}}</li>
                         <li>Lunch: {{option.lunch}}</li>
                         <li>Dinner: {{option.dinner}}</li>
@@ -114,6 +117,9 @@
                 </td>
                 <td>
                     {{company.instagramFollowers}}
+                </td>
+                <td>
+                    <p>{{company.averageRating}}</p>
                 </td>
                 <td>
 

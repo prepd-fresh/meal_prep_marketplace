@@ -11,7 +11,10 @@ var companySchema = exports.companySchema = new _mongoose.Schema({
     name: String,
     deliveryLocations: [],
     deliveryDays: [],
-    cutOff:String,
+    cutOff:{
+        time: String,
+        zone:String,
+    },
     paymentOptions: [],
     priceRange: {
         lowest: String,
@@ -30,6 +33,7 @@ var companySchema = exports.companySchema = new _mongoose.Schema({
     vegetarian: String,
     extraProtien: String,
     vegan: String,
+    averageRating:Number,
     instagramFollowers: String
 });
 

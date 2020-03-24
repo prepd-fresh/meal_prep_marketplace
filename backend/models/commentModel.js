@@ -6,8 +6,7 @@ export var commentSchema = new Schema({
     contents: String,
     date: Date,
     rating: Number,
-    averageRating: Number, // swap this to company model (wipe everything again)
-
+  
 });
 
 const Comment = model('Comment', commentSchema);
