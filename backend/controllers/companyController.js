@@ -69,7 +69,7 @@ export const addCompany = (req,res) =>{
     });
     companyData.save((err) =>{
         if(err) throw err
-    })
+    });
     res.status(200).json({ message: "true" })
     res.end();
 }
@@ -82,7 +82,7 @@ export const allCompany = (req, res) =>{
         }else{
             res.send(company)
         }
-    })
+    });
 }
 
 export const deleteAllComapny = (req, res) =>{
@@ -104,7 +104,6 @@ export const deleteCompany = (req,  res )=>{
         }
         res.status(200).json({ message: "true" })
         
-    })
-    
+    });
 }
 

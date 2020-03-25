@@ -71,9 +71,9 @@
         <b-form-input
           id="password-input"
           v-model="password"
+          type="password"
           required
           placeholder="Enter password"
-          type:password
           :state="passwordstate"
           @keydown.native.space.prevent
         ></b-form-input>
@@ -92,7 +92,7 @@
           v-model="passwordChecker"
           required
           placeholder="re-enter password"
-          type:password
+          type="password"
           :state="passwordCheckerState"
           @keydown.native.space.prevent
         ></b-form-input>
