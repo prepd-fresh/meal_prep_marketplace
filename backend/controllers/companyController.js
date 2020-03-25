@@ -17,12 +17,12 @@ function company(){
         },
         bulkDiscount: 'true',
         numberOfMeals: '10',
-        mealOptions: [{
+        mealOptions: {
             breakFast: '1',
             lunch: 'none',
             dinner: '8',
             snacks: '1'
-        }],
+        },
         menuChanges: 'true',
         sizeOptions: 'false',
         vegetarian: 'true',
@@ -46,7 +46,10 @@ export const addCompany = (req,res) =>{
         name: company.name,
         deliveryLocations: company.deliveryLocations,
         deliveryDays: company.deliveryDays,
-        cutOff: company.cutOff,
+        cutOff: {
+            time: company.cutOff.time,
+            zone: company.cutOff.zone
+        },
         paymentOptions: company.paymentOptions,
         priceRange: {
             lowest: company.priceRange.lowest,
@@ -65,6 +68,7 @@ export const addCompany = (req,res) =>{
         vegetarian: company.vegetarian,
         extraProtien: company.extraProtien,
         vegan: company.vegan,
+        averageRating: 0,
         instagramFollowers: company.instagramFollowers
     });
     companyData.save((err) =>{
@@ -76,7 +80,7 @@ export const addCompany = (req,res) =>{
 
 
 export const allCompany = (req, res) =>{
-    companyModel.collection.find({}).toArray(function(err,company){
+    companyModel.collection.find({}).toArray( function(err,company){
         if(err){
             res.send("error")
         }else{

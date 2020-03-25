@@ -1,15 +1,19 @@
 <template>
   <div>
     <h1>Location</h1>
-  <ul>
-    <li>Map and range of the </li>
-    <li>Where they devliver too</li>
-  </ul>
+    <div>{{this.t}}</div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      t: this.companyLocationOptions,
+    }
+  },
+  props: ['companyLocationOptions'],
+};
 </script>
 
 <style>

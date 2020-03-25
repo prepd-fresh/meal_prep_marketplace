@@ -6,7 +6,7 @@
         <b-modal id="modalPopover" title="Add new company" ok-only size="xl" v-bind:hide-footer="true">
             <div class="companyForm">
                 <b-form-group id="input-group-1" label="Company Name:" label-for="input-1" description="Please enter the name">
-                    <b-form-input id="input-1" v-model="form.name" type="text" required placeholder="Enter email"></b-form-input>
+                    <b-form-input id="input-1" v-model="form.name" type="text" required placeholder="Enter Company name"></b-form-input>
                 </b-form-group>
                 <b-form-group label="Delivery Locations:">
                     <b-form-checkbox-group id="checkbox-group-2" v-model="form.deliveryLocations" name="flavour-2">
@@ -30,11 +30,11 @@
                 <b-row>
                     <b-col>
                         <p>Time: </p>
-                        <b-form-select v-model="time" :options="orderCutOffOptions"></b-form-select>
+                        <b-form-select v-model="form.cutOff.time" :options="orderCutOffOptions"></b-form-select>
                     </b-col>
                     <b-col>
                         <p>Time Period:</p>
-                        <b-form-select label="Cut off" v-model="timeZone" :options="orderCutOffTimeZone"></b-form-select>
+                        <b-form-select label="Cut off" v-model="form.cutOff.zone" :options="orderCutOffTimeZone"></b-form-select>
                     </b-col>
 
                 </b-row>
@@ -110,11 +110,17 @@
                             <b-form-radio v-model="form.extraProtien" name="extraProtien-radoos" value="False">No</b-form-radio>
                         </b-form-group>
                     </b-col>
+                    <b-col>
+                        <b-form-group label="Vegan:">
+                            <b-form-radio v-model="form.vegan" name="vegan-radios" value="True">Yes</b-form-radio>
+                            <b-form-radio v-model="form.vegan" name="vegan-radoos" value="False">No</b-form-radio>
+                        </b-form-group>
+                    </b-col>
                 </b-row>
                 <b-form-group id="input-group-1" label="Intagram Followers: " label-for="input-1" description="Please enter the higest meal price">
                     <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter number of Instagram followers"></b-form-input>
                 </b-form-group>
-                <b-button v-on:click="onSubmit" variant="outline-primary" >submit</b-button>
+                <b-button v-on:click="onSubmit" variant="outline-primary">submit</b-button>
             </div>
         </b-modal>
     </div>
@@ -124,7 +130,7 @@
                 <userList />
             </b-tab>
             <b-tab title="Company List">
-                <companyList v-if="reloader"/>
+                <companyList v-if="reloader" />
             </b-tab>
             <b-tab title="comments">
                 <p>will show comments here</p>
@@ -149,7 +155,10 @@ export default {
                 name: '',
                 deliveryLocations: [],
                 deliveryDays: [],
-                cutOff: "Add time and Time Zone values togehter ",
+                cutOff: {
+                    time: '',
+                    zone:''
+                },
                 paymentOptions: [],
                 priceRange: {
                     lowest: '',
@@ -157,12 +166,12 @@ export default {
                 },
                 bulkDiscount: null,
                 numberOfMeals: '',
-                mealOptions: [{
+                mealOptions: {
                     breakFast: '',
                     lunch: '',
                     dinner: '',
                     snacks: ''
-                }],
+                },
                 menuChanges: '',
                 sizeOptions: '',
                 vegetarian: '',
@@ -199,19 +208,24 @@ export default {
                 {
                     value: '5',
                     text: '5',
-                }, {
+                },
+                {
                     value: '6',
                     text: '6',
-                }, {
+                }, 
+                {
                     value: '7',
                     text: '7',
-                }, {
+                }, 
+                {
                     value: '8',
                     text: '8',
-                }, {
+                }, 
+                {
                     value: '9',
                     text: '9',
-                }, {
+                }, 
+                {
                     value: '10 +',
                     text: '10 +',
                 },
@@ -270,20 +284,21 @@ export default {
     },
     methods: {
         onSubmit: function () {
+            console.log(this.form)
             this.$http
-            .post(
-                API_URL,{
-                    company: JSON.stringify(this.form)
-                }
-            ).then(responces =>{
-                if(responces.data.message === "true"){
-                    this.reloader = false;
+                .post(
+                    API_URL, {
+                        company: JSON.stringify(this.form)
+                    }
+                ).then(responces => {
+                    if (responces.data.message === "true") {
+                        this.reloader = false;
 
-                    this.$nextTick(()=>{
-                        this.reloader = true;
-                    })
-                }
-            })
+                        this.$nextTick(() => {
+                            this.reloader = true;
+                        })
+                    }
+                })
         },
 
     }
@@ -302,5 +317,4 @@ export default {
 #custom-select {
     width: 10% !important;
 }
-
 </style>
