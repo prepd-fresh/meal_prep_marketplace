@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-tabs content-class="mt-3">
+    <b-tabs content-class="mt-4" class="tab">
       <b-tab title="Payment Options">
         <paymentOptions :paymentInfo ="paymentInfo" />
       </b-tab>
@@ -71,6 +71,10 @@ export default {
 }
 .nav-link:hover {
   color: #f8951d !important;
+}
+.tab{
+  width:100% !important;
+  margin-right: -100px !important;
 }
 @media only screen and (max-width: 600px) {
   .nav {

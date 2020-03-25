@@ -42,6 +42,7 @@
           star >= 0
         )
           this.stars = this.stars === star ? star - 1 : star
+          this.$emit('starCount',this.stars)
       }
     }
   }
