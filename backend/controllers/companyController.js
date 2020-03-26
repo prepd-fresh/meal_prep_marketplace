@@ -11,7 +11,7 @@ function company(){
         deliveryDays: ['Monday',`Wednesday`],
         cutOff: {
             time: 10,
-            zone:"PM"
+            zone: "PM"
         },
         paymentOptions: ['cash', 'Credit card'],
         priceRange: {
@@ -102,7 +102,6 @@ export const deleteAllComapny = (req, res) =>{
     });
 }
 
-
 export const deleteCompany = (req,  res )=>{
     const companyID = JSON.parse(req.body.companyID)
     companyModel.deleteOne({_id: new mongodb.ObjectID(companyID)}, (err) =>{
@@ -114,3 +113,24 @@ export const deleteCompany = (req,  res )=>{
     });
 }
 
+export const singleCompany = (req,  res )=>{
+    console.log(req.body);
+    const companyID = JSON.parse(req.body.companyID)
+    companyModel.findOne({_id: new mongodb.ObjectID(companyID)}, (err, company) => {
+        if(err) res.send("error");
+        else {
+            res.send(company);
+        }
+    });
+}
+
+export const updateCompany = (req, res) => {
+    const companyID = JSON.parse(req.body.company.companyID);
+    const company = JSON.parse(req.body.company);
+    companyModel.collection.updateOne({_id: new mongodb.ObjectID(companyID)}, company, (err) =>{
+        if(err){
+            res.send(err)
+        }
+        res.status(200).json({ message: "true" }); 
+    });
+}
