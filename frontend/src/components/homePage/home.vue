@@ -21,6 +21,7 @@ export default {
         company,
         banner
     },
+
     created: function () {
         this.$http.get(API_URL)
             .then(response => {

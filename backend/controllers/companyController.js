@@ -9,7 +9,10 @@ function company(){
         name: 'Test',
         deliveryLocations: [`GTA`,`Brampton`],
         deliveryDays: ['Monday',`Wednesday`],
-        cutOff: "Add time and Time Zone values togehter ",
+        cutOff: {
+            time: 10,
+            zone:"PM"
+        },
         paymentOptions: ['cash', 'Credit card'],
         priceRange: {
             lowest: '9.99',

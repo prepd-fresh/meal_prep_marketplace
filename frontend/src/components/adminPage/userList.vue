@@ -45,7 +45,6 @@ export default {
             .get(API_URL)
             .then(response => {
                 this.users = response.data;
-                console.log(this.users);
             })
             .catch(error => {
                 console.log(error.response);

@@ -282,9 +282,15 @@ export default {
         userList,
         companyList
     },
+    beforeCreate: function(){
+        console.log(this.$cookie.get("role"))
+        if(this.$cookie.get("Auth") === null || this.$cookie.get("role") === "user"){
+            this.$router.push("/login")
+        }
+
+    },
     methods: {
         onSubmit: function () {
-            console.log(this.form)
             this.$http
                 .post(
                     API_URL, {

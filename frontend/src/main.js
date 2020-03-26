@@ -5,6 +5,7 @@ import {BootstrapVue, BootstrapVueIcons} from 'bootstrap-vue'
 import router from "./routes"
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import VueCookie from 'vue-cookie'
 
 
 //import layouts here
@@ -16,6 +17,7 @@ import adminLayout from "@/layouts/admin.vue"
 //implement Vue dependences/pacages here
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(VueCookie)
 
 //implement layouts here
 Vue.component('default-layout', Default)

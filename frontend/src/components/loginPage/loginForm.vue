@@ -64,11 +64,18 @@ export default {
           user: JSON.stringify(this.form)
         }).then(response =>{
             if(response.data.message === "true"){
+              this.$cookie.set("Auth", response.data.token,{expires: "3h"})
+              this.$cookie.set("role", response.data.role,{expires: "3h"})
+              if(response.data.role === 'admin'){
+                  this.$router.push("/admin")
+              }else{
+                this.$router.push("/")
+              }
               this.error = false;
             }else{
               this.error = true;
             }
-            console.log(response)
+          
         }).catch((error) =>{
           console.log(error.response)
         })

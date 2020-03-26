@@ -23,8 +23,8 @@ function testAdmin(){
     var user = new userModel({
         email:"admin@gmail.com",
         name:"Adamin",
-        passowrd:"admin",
-        role:"admin n"
+        password:"admin",
+        role:"admin"
     })
     user.save((err) =>{
         if(err) throw err
@@ -40,7 +40,7 @@ export const  createAdminUser = (req, res) => {
     res.send("created Admin")
 }
 export const showAllUsers = (req, res) => {
-    userModel.collection.find({role: "user"}).toArray(function (err, user) {
+    userModel.collection.find().toArray(function (err, user) {
         if(err){
             res.send("error")
         }else{
@@ -67,26 +67,18 @@ export const loginUser = async (req, res) => {
     } catch (err) {
         console.log(err)
     }
-    //if the email exists then check if password match
 
 
-
-    ///IMPORTANT CHECK IF USER IS AN ADMIN HERE TOO 
-    //CHANGE USER MODAL TO HAVE AN ADMIN FEATURE AS WELL
-    //COMPANY ADD FORM 
-    //DISPLAY COMPANY 
-    //AND ALL ADMIN FEATURES
-    console.log(require('dotenv').config())
     if (user !== null) {
         try {
             //compares the two passwords togther one passwed from the user one gotten from the database
-            await bcrypt.compare(password, user.password, (err, value) => {
+            await bcrypt.compare(password, await user.password, (err, value) => {
                 if (err) {
                     res.send(err)
                 } else {
                     if (value === true) {
-                       const accessToken = jwt.sign(user.toJSON(), process.eventNames.TOKEN)
-                       res.status(200).json({ message: "true" , token: accessToken})
+                       const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_TOKEN)
+                       res.status(200).json({ message: "true" , token: accessToken, role: user.role})
                     } else {
                         res.status(200).json({ message: "false" })
                     }
@@ -112,7 +104,7 @@ export const deleteAllUsers = (req, res) => {
     })
 }
 export const deleteAllAdmins = (req, res) => {
-    userModel.deleteMany({ email: 'test@test.com' }, (err) => {
+    userModel.deleteMany({ email: 'admin@gmail.com' }, (err) => {
         if (err) {
             res.send(err);
         }

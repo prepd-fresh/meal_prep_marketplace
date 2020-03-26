@@ -8,6 +8,8 @@ import{
     createAdminUser
 } from '../controllers/userController'
 
+import authentication from './middleWare'
+
 const routes = (app) =>{
     //Creates a User
     app.route('/api/user')
