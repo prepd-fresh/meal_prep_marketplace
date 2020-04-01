@@ -1,4 +1,4 @@
-import {Document, Schema, Model, model} from "mongoose";
+  import {Document, Schema, Model, model} from "mongoose";
 
 export var commentSchema = new Schema({
     email:String,

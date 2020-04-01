@@ -8,7 +8,7 @@
         <companyMenu :companyMenuOptions ="companyMenuOptions" />
       </b-tab>
       <b-tab title="Reviews">
-        <review/>
+        <review :companyCurrentName ="companyCurrentName"/>
       </b-tab>
       <b-tab title="location">
         <companyLocation :companyLocationOptions ="companyLocationOptions"/>
@@ -29,7 +29,8 @@ import review from "./companyComponents/review"
 export default {
   data() {
     return {
-        info: this.companyInformation,
+        info: this.companyInformation, 
+        companyCurrentName:  this.companyInformation.name,
         //spliting all the data into sub groups and passing it down the component tree
         paymentInfo:{
           paymentOptions:  this.companyInformation.paymentOptions,

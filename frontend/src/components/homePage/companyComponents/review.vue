@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1 class="mainTitle">Reviews</h1>
+    <h1 class="mainTitle">{{this.companyName}}</h1>
     <b-button v-b-toggle.collapse-1 variant="primary" class="reviewButton">Leave a review</b-button>
     <b-collapse id="collapse-1" class="mt-2">
         <b-card>
@@ -16,18 +16,22 @@
         </b-card>
     </b-collapse>
     <h2>All existing revies here</h2>
+    {{allComments}}
 </div>
 </template>
 
 <script>
+const API_URL = 'http://localhost:3000/api/allComments' 
 import reviewStars from "./rating"
 export default {
     data() {
         return {
+            companyName:this.companyCurrentName,
             maxCount: 150,
             remainingCount: 150,
             message: '',
             hasError: false,
+            allComments: '',
 
             comment:{
                 email:'',
@@ -40,6 +44,19 @@ export default {
     },
     components: {
         reviewStars
+    },
+    props:['companyCurrentName'],
+
+    created: function() {
+        this.$http.post(API_URL, {
+            companyName: JSON.stringify(this.companyCurrentName)
+        }).then(response =>{
+            this.allComments = response.data
+            console.log(response)
+        }).catch((error) =>{
+            console.log(error)
+        })
+
     },
     methods:{
         countdown:function(){

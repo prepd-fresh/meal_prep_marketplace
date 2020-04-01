@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import userRoutes from './routes/userRoutes'
 import companyRoutes from './routes/companyRoutes'
+import commentRoutes from './routes/commentRotues'
 import bodyParser from 'body-parser';
 import  cors from 'cors'
 require('dotenv').config()
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 
 userRoutes(app)
 companyRoutes(app)
+commentRoutes(app)
 
 
 app.get('/',(req, res) =>{
