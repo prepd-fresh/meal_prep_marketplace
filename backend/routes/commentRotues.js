@@ -23,7 +23,7 @@ const routes = (app) => {
             .get((req, res, next) => {
                 next();
             }, addComment),
-        app.route('/api/abc')
+        app.route('/api/allCommentsAdmin')
             .get((req, res, next) => {
                 next();
             }, allCommentsAdmin)
