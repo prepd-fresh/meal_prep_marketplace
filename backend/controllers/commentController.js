@@ -7,7 +7,7 @@ const commentModel = mongoose.model('Comment', Schema.commentSchema)
 function comment(){
     var comment = new commentModel({
         email:"test@test.com",
-        companyName:"Clean Bite",
+        companyName:"Test",
         content:"greate food perfect meals",
         date:"1/11/2020",
         rating: 5
@@ -41,13 +41,13 @@ export const addComment = (req,res) =>{
     res.end(); 
 }
 export const deleteAllComments = (req,res) => {
-    commentModel.deleteMany({}, (err) =>{
+    commentModel.collection.find({}).toArray(function(err, comments){
         if(err){
             res.send(err)
+        }else{ 
+            res.send(comments)
         }
-        res.send("deleted all comments")
-        res.end();
-    });
+    })
 }
 
 export const allCommentsByCompany = (req,res) => {  
@@ -62,7 +62,7 @@ export const allCommentsByCompany = (req,res) => {
 }
 
 export const allCommentsAdmin = (req,res) =>{ 
-    commentModel.collection.find({}).toArray(  function(err, comments){
+    commentModel.collection.find({}).toArray(function(err, comments){
         if(err){
             res.send(err)
         }else{

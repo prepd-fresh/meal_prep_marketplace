@@ -133,7 +133,7 @@
                 <companyList v-if="reloader" />
             </b-tab>
             <b-tab title="comments">
-                <commentList/>
+                <p>will show comments here</p>
             </b-tab>
         </b-tabs>
     </div>
@@ -144,7 +144,6 @@
 <script>
 import userList from "./userList"
 import companyList from "./companyList"
-import commentList from './commentList'
 const API_URL = "http://localhost:3000/api/addcompany"
 export default {
     data() {
@@ -281,8 +280,7 @@ export default {
     },
     components: {
         userList,
-        companyList,
-        commentList
+        companyList
     },
     beforeCreate: function(){
         console.log(this.$cookie.get("role"))

@@ -15,17 +15,14 @@
             <b-button class="submitReview" v-on:click="submitComment">Submit Review </b-button>
         </b-card>
     </b-collapse>
-    <h6>Other Reviews</h6>
-    <ul v-for="(comment, index) in allComments" v-bind:key="index.id" class="list"  data-spy="scroll">
-        <li><userReviews :review = comment /></li>
-    </ul>
+    <h2>All existing revies here</h2>
+    {{allComments}}
 </div>
 </template>
 
 <script>
 const API_URL = 'http://localhost:3000/api/allComments' 
 import reviewStars from "./rating"
-import userReviews from './userReviews'
 export default {
     data() {
         return {
@@ -46,8 +43,7 @@ export default {
         }
     },
     components: {
-        reviewStars,
-        userReviews
+        reviewStars
     },
     props:['companyCurrentName'],
 
@@ -112,10 +108,6 @@ export default {
     display: inline !important;
      background-color: #f8951d !important;
     border-style:none !important;
-}
-.list{
-    list-style-type: none;
-    margin-right:20px;
 }
 
 

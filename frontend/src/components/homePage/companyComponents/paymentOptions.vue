@@ -2,7 +2,6 @@
   <div>
     <h1>prices</h1>
     <div>{{this.payments}}</div>
-
   </div>
 </template>
 

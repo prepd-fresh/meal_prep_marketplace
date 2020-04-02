@@ -3,7 +3,7 @@
 export var commentSchema = new Schema({
     email:String,
     companyName:String,
-    content: String,
+    contents: String,
     date: Date,
     rating: Number,
   
