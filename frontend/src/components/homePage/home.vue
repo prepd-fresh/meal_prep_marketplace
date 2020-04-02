@@ -1,11 +1,9 @@
 <template>
 <div>
     <banner />
-    <div  class="d-flex align-items-center flex-column">
-        <div v-for="n in this.companys.length" v-bind:key="n" class="mb-4">
-            <company :idNumber="n" :company="companys[n- 1]"/>
-        </div>
-    </div>
+    <ul v-for="n in this.companys.length" v-bind:key="n">
+        <company :idNumber="n" :company="companys[n- 1]"/>
+    </ul>
 </div>
 </template>
 

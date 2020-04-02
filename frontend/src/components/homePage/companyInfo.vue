@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2 class="dn-600">{{this.companyCurrentName}}</h2>
     <b-tabs content-class="mt-4" class="tab">
       <b-tab title="Payment Options">
         <paymentOptions :paymentInfo ="paymentInfo" />
@@ -64,6 +63,9 @@ export default {
 </script>
 
 <style>
+.nav {
+  margin-left: 20px;
+}
 .nav-link {
   color: black;
   font-size: 15px;
@@ -85,10 +87,6 @@ export default {
   }
   .nav-item{
     margin: -5px;
-  }
-
-  .dn-600 {
-    display: none;
   }
 }
 </style>

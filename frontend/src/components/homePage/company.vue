@@ -2,26 +2,22 @@
 <div>
 <div class="layout">
   <b-card class="cardMain" no-body  style="max-width: 1000px;" @click="$bvModal.show('bv-modal-'+idNumber)">
-    <b-row no-gutters class="mh-264">
+    <b-row no-gutters>
       <b-col md="6">
-        <b-card-img  :src="images.foodPicture" class="rounded-0 mh-264 card-img" ></b-card-img>
+        <b-card-img  :src="images.foodPicture" class="rounded-0" ></b-card-img>
       </b-col>
-      <b-col md="6" class="mh-264 overflow-auto">
+      <b-col md="6">
         <b-card-body >
           <b-card-text>
             <h4 class = "header">{{company.name}}</h4>
             <h5>Delivery locations: </h5>
-              <div class="d-flex mb-4">
-                <span class="badge badge-primary mr-2" v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
-                  {{location}}
-                </span>
-              </div>
+              <ul v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
+                <li>{{location}}</li>
+              </ul>
               <h5>Payment Options</h5>
-              <div class="d-flex mb-4">
-                <span class="badge badge-secondary mr-2 text-capitalize" v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
-                  {{option}}
-                </span>
-              </div>
+              <ul v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
+                <li>{{option}}</li>
+              </ul>
           </b-card-text>
         </b-card-body>
       </b-col>
@@ -73,20 +69,27 @@ export default {
 .modal-title{
   color:#f8951d;
 }
-
+.cardImage{
+  
+}
 .cardMain:hover {
   background:#F5F5F5;
 }
 .cardMain{
+  margin:5% !important;
+  margin-right: 30px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 .card{
   margin-top: 0% !important;
 }
+.layout{
+  margin-left:10%; 
+}
 .header{
   color:#f8951d;
   text-align: center;
-  margin-top: 0 !important;
 }
 .modal-body{
   margin:-80px;
@@ -94,23 +97,12 @@ export default {
 .round-0{
   margin:10px !important;
 }
-
-ul {
-  margin-bottom: 0 !important;
-}
-@media only screen and (min-width: 768px) {
-  .mh-264{
-    max-height: 264px;
-  }
-}
-
 @media only screen and (max-width: 600px) {
   .layout{
     margin-left:0%; 
   }
-
   .modal-body{
-    margin:-10px;
+  margin:-10px;
   }
 }
 </style>
