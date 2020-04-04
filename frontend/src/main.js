@@ -12,6 +12,7 @@ import VueCookie from 'vue-cookie'
 import Default from "@/layouts/default.vue"
 import noSearch from "@/layouts/noSearch.vue"
 import adminLayout from "@/layouts/admin.vue"
+import loggedInLayout from "@/layouts/loggedIn.vue"
 
 
 //implement Vue dependences/pacages here
@@ -23,6 +24,7 @@ Vue.use(VueCookie)
 Vue.component('default-layout', Default)
 Vue.component('noSearch-layout', noSearch)
 Vue.component('admin-layout', adminLayout )
+Vue.component('loggedIn-layout',loggedInLayout)
 
 
 //vue axios implementation (uses it to send data to server)

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar class="navBar" toggleable="lg" type="dark" variant="info" fixed="top">
-      <b-navbar-brand class="navBand" href="/">
+      <b-navbar-brand class="navBand" href="/home">
         <b-img :src="images.logoSmall" class="logoSmall"></b-img>
       </b-navbar-brand>
 
@@ -9,8 +9,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#" class="navBand">Logout</b-nav-item>
-          <b-nav-item href="/about" class="navBand">About</b-nav-item>
+          <b-nav-item v-on:click="logout" class="navBand">Logout</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -79,7 +78,13 @@ export default {
         logoSmall: require("../../assets/images/small-logo.png")
       }
     };
-  }
+
+  },
+  methods:{
+    logout: function(){
+      alert("Hello World")
+    }
+  },
 };
 </script>
 

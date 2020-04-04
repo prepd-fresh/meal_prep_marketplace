@@ -1,16 +1,17 @@
 <template lang="html">
   <div>
-      <navigation/>
+      <h1>test</h1>
+      <navigationloggedIn/>
       <slot />
   </div>
 </template>
 
 <script>
-import navigation from "@/components/homePage/navigation";
+import navigationloggedIn from "@/components/loggedInComponents/loggedInNavigation";
 
 export default {
     components:{
-        navigation
+     navigationloggedIn
     }
 }
 </script>

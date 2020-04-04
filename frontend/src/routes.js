@@ -30,6 +30,11 @@ export default new VueRouter({
       name:"admin",
       meta:{layout: "admin"},
       component: require("@/components/adminPage/adminHome").default
+    },{
+      path:"/home",
+      name:"home",
+      meta:{layout:"loggedIn"},
+      component: require("@/components/homePage/home.vue").default
     }
     
 
