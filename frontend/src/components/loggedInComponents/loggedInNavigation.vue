@@ -80,9 +80,15 @@ export default {
     };
 
   },
+  beforeCreate: function(){
+    if(this.$cookie.get("Auth") == null){
+      this.$router.push("/login")
+    }
+  },
   methods:{
     logout: function(){
-      alert("Hello World")
+      //should kill cookie here
+      this.$router.push("/")
     }
   },
 };

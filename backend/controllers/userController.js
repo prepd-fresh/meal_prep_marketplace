@@ -3,6 +3,9 @@ import Schema from '../models/userModel';
 import bcrypt from 'bcrypt'
 import User from '../models/userModel';
 import jwt from 'jsonwebtoken'
+//add .env file FUCK
+
+
 
 //required for the session token generation
 require('dotenv').config();
@@ -71,7 +74,11 @@ export const loginUser = async (req, res) => {
 
     if (user !== null) {
         try {
-            //compares the two passwords togther one passwed from the user one gotten from the database
+            if(user.password == null){
+                user.password = "0"
+            }
+            console.log(password)
+            console.log(user.password)
             await bcrypt.compare(password, await user.password, (err, value) => {
                 if (err) {
                     res.send(err)

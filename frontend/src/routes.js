@@ -2,13 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
-
 export default new VueRouter({
   mode: "history",
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "basic",
       component: require("@/components/homePage/home.vue").default
     }, {
       path: "/about",
@@ -33,7 +32,7 @@ export default new VueRouter({
     },{
       path:"/home",
       name:"home",
-      meta:{layout:"loggedIn"},
+      meta:{layout:"loggedIn", requireAuth: true},
       component: require("@/components/homePage/home.vue").default
     }
     

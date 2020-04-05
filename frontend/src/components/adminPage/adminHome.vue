@@ -1,4 +1,4 @@
-<template>
+    <template>
 <div>
     <div>
         <b-button v-b-modal.modalPopover>Add company</b-button>

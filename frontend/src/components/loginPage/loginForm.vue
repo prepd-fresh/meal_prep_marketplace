@@ -69,7 +69,7 @@ export default {
               if(response.data.role === 'admin'){
                   this.$router.push("/admin")
               }else{
-                this.$router.push("/")
+                this.$router.push("/home")
               }
               this.error = false;
             }else{
