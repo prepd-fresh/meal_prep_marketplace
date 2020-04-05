@@ -17,7 +17,7 @@
                     </b-form-checkbox-group>
                 </b-form-group>
                 <b-form-group label="Delivery days:">
-                    <b-form-checkbox-group id="checkbox-group-2" v-model="form.deliveryTimes" name="flavour-2">
+                    <b-form-checkbox-group id="checkbox-group-2" v-model="form.deliveryDays" name="flavour-2">
                         <b-form-checkbox value="Monday">Monday</b-form-checkbox>
                         <b-form-checkbox value="Tuesday">Tuesday</b-form-checkbox>
                         <b-form-checkbox value="Wednesday">Wednesday</b-form-checkbox>

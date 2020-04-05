@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>Location</h1>
-    <div>{{this.t}}</div>
+    <h4>All Delivery locations</h4>
+    <ul v-for="(location, index) in deliveryLocations.deliveryOptions" v-bind:key="index.id">
+      <li>{{location}}</li>
+    </ul>
   </div>
 </template>
 
@@ -9,7 +12,7 @@
 export default {
   data(){
     return{
-      t: this.companyLocationOptions,
+      deliveryLocations: this.companyLocationOptions,
     }
   },
   props: ['companyLocationOptions'],
