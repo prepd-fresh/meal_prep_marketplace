@@ -9,8 +9,6 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="/admin/#" class="navBand">Admin stuff</b-nav-item>
-          <b-nav-item href="/admin/#" class="navBand">Admin Stuff 2</b-nav-item>
           <b-nav-item href="/admin/#" class="navBand">logout</b-nav-item>
         </b-navbar-nav>
 

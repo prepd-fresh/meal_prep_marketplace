@@ -9,9 +9,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-                <b-nav-item href="/login" class="navBand">Login</b-nav-item>
-                <b-nav-item href="/register" class="navBand">Register</b-nav-item>
-                <b-nav-item href="/about" class="navBand">About</b-nav-item>
+                <b-nav-item href="/login" class="navBand">Logout</b-nav-item>
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">
