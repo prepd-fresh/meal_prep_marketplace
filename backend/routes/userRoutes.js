@@ -2,10 +2,10 @@ import{
     showAllUsers,
     createTestUser,
     deleteAllUsers,
-    register,
     loginUser,
     deleteAllAdmins,
-    createAdminUser
+    createAdminUser,
+    registerUser
 } from '../controllers/userController'
 
 import authentication from './middleWare'
@@ -31,9 +31,9 @@ const routes = (app) =>{
 
     //Registers router
     app.route('/api/register')
-    .put((req,res,next) =>{
+    .post((req,res,next) =>{
         next();    
-    },register)
+    },registerUser)
 
     //Login user 
     app.route('/api/login')

@@ -11,7 +11,7 @@
       >
         <b-form-input
           id="email-input"
-          v-model="email"
+          v-model="form.email"
           type="email"
           required
           placeholder="Enter email"
@@ -32,32 +32,12 @@
       >
         <b-form-input
           id="name-input"
-          v-model="name"
+          v-model="form.name"
           required
           placeholder="Enter name"
           :state="namestate"
           trim
         ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        class="label"
-        id="input-label-username"
-        label="Enter username:"
-        label-for="username-input"
-        :invalid-feedback="invalidFeedbackUsername"
-      >
-        <b-form-input
-          id="username-input"
-          v-model="username"
-          required
-          placeholder="Enter username"
-          :state="usernamestate"
-          @keydown.native.space.prevent
-        ></b-form-input>
-        <div v-show="errorUsername">
-          <p class="errorMessage">Username is taken</p>
-        </div>
       </b-form-group>
 
       <b-form-group
@@ -70,7 +50,7 @@
       >
         <b-form-input
           id="password-input"
-          v-model="password"
+          v-model="form.password"
           type="password"
           required
           placeholder="Enter password"
@@ -104,18 +84,17 @@
 </template>
 
 <script>
- const API_URL = 'http://localhost:3000/api/allusers'
+ const API_URL = 'http://localhost:3000/api/register'
 export default {
   
     data() {
     return {
-      //variables
       passwordChecker: "",
-      password: "",
-      name: "",
-      username: "",
-      email: "",
-      form: {},
+      form: {
+        password: "",
+        name: "",
+        email: "",
+      },
       errorUsername: false,
       errorEmail: false
     }
@@ -123,69 +102,59 @@ export default {
   },
   methods:{
      validateForm() {
-      if (this.name.length < 4) {
+      if (this.form.name.length < 4) {
         return false;
-      } else if (this.password !== this.passwordChecker) {
+      } else if (this.form.password !== this.passwordChecker) {
         return false;
-      } else if (this.username.length < 5) {
+      } else if (this.form.username.length < 5) {
         return false;
-      } else if (this.password < 7) {
+      } else if (this.form.password < 7) {
         return false;
       } else {
         return true;
       }
     },
-    onSubmit(evt){
-        
-          evt.preventDefault()
+    onSubmit(evt){    
+      evt.preventDefault()
       this.$http
         .post(API_URL, {
-          user: JSON.stringify(this.form)
+          newUser: JSON.stringify(this.form)
         }).then(response =>{
-         // alert("something")
-            alert(response)
+            if(response.data.message === "added"){
+              this.errorEmail = false;
+              this.$router.push('/login')
+            }else if(response.data.message ==="emailTaken"){
+              this.errorEmail = true;
+            }else{
+              alert("unreachable")
+            }
+            
         })
     }
   },
    computed: {
     //Name error checking done
     namestate() {
-      return this.name.length >= 4 ? true : false;
+      return this.form.name.length >= 4 ? true : false;
     },
     invalidFeedbackName() {
-      if (this.name.length === 0) {
+      if (this.form.name.length === 0) {
         return "cannot be blank";
       }
       return "cannot be blank";
     },
-    //Username error checking
-    usernamestate() {
-      if (this.username.length >= 5) {
-        return true;
-      }
-      return false;
-    },
-    invalidFeedbackUsername() {
-      if (this.username.length > 0) {
-        return "username needs to be longer";
-      } else if (this.username.length >= 6) {
-        return " ";
-      } else {
-        return "cannot be blank";
-      }
-    },
     //password
     passwordstate() {
-      if (this.password.length >= 7) {
+      if (this.form.password.length >= 7) {
         return true;
       } else {
         return false;
       }
     },
     invalidFeedbackPassword() {
-      if (this.password.length > 7) {
+      if (this.form.password.length > 7) {
         return " ";
-      } else if (this.password.length > 0) {
+      } else if (this.form.password.length > 0) {
         return "Password needs to be longer";
       } else {
         return "Cannot be empy";
@@ -193,16 +162,16 @@ export default {
     },
     //password checker
     passwordCheckerState() {
-      if (this.password === this.passwordChecker) {
-        return true;
-      } else if (this.passwordChecker.length <= 0) {
+      if (this.passwordChecker.length ===0) {
         return false;
+      } else if (this.form.password === this.passwordChecker) {
+        return true;
       } else {
         return false;
       }
     },
     invalidFeedbackPasswordChecker() {
-      if (this.password !== this.passwordChecker) {
+      if (this.form.password !== this.passwordChecker) {
         return "Passwords do not match";
       } else if (this.passwordChecker.length == 0) {
         return "cannot be empty";

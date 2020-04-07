@@ -3,6 +3,7 @@ import Schema from '../models/userModel';
 import bcrypt from 'bcrypt'
 import User from '../models/userModel';
 import jwt from 'jsonwebtoken'
+
 //add .env file FUCK
 
 
@@ -16,21 +17,21 @@ function testUser() {
         email: "test@test.com",
         name: "testUName",
         password: "testpassword",
-        role:"user"
+        role: "user"
     })
     user.save((err) => {
         if (err) throw err;
     })
 }
-function testAdmin(){
+function testAdmin() {
     var user = new userModel({
-        email:"admin@gmail.com",
-        name:"Adamin",
-        password:"admin",
-        role:"admin"
+        email: "admin@gmail.com",
+        name: "Adamin",
+        password: "admin",
+        role: "admin"
     })
-    user.save((err) =>{
-        if(err) throw err
+    user.save((err) => {
+        if (err) throw err
     })
 }
 
@@ -38,23 +39,18 @@ export const createTestUser = (req, res) => {
     testUser();
     res.send("added user successfully")
 }
-export const  createAdminUser = (req, res) => {
+export const createAdminUser = (req, res) => {
     testAdmin();
     res.send("created Admin")
 }
 export const showAllUsers = (req, res) => {
     userModel.collection.find().toArray(function (err, user) {
-        if(err){
+        if (err) {
             res.send("error")
-        }else{
+        } else {
             res.send(user)
         }
     });
-
-
-}
-export const register = (req, res) => {
-    console.log(req.user)
 }
 /*
 Login controller
@@ -70,11 +66,9 @@ export const loginUser = async (req, res) => {
     } catch (err) {
         console.log(err)
     }
-
-
     if (user !== null) {
         try {
-            if(user.password == null){
+            if (user.password == null) {
                 user.password = "0"
             }
             console.log(password)
@@ -84,8 +78,8 @@ export const loginUser = async (req, res) => {
                     res.send(err)
                 } else {
                     if (value === true) {
-                       const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_TOKEN)
-                       res.status(200).json({ message: "true" , token: accessToken, role: user.role})
+                        const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_TOKEN)
+                        res.status(200).json({ message: "true", token: accessToken, role: user.role })
                     } else {
                         res.status(200).json({ message: "false" })
                     }
@@ -94,8 +88,32 @@ export const loginUser = async (req, res) => {
         } catch (err) {
             console.log(err)
         }
-    }else{
+    } else {
         res.status(200).json({ message: "false" })
+    }
+}
+export const registerUser = async (req, res) => {
+    var body = JSON.parse(req.body.newUser);
+
+    var emailChecker = await validateEmail(body.email).catch(() => " promis rejected email checer")
+    
+    //if the email checker value is null that meas a user dosnt exit with that email
+    if (emailChecker === null) {
+        var addUser = new userModel({
+            email: body.email,
+            name: body.name,
+            password: body.password,
+            role: "user"
+        })
+        addUser.save(function (err) {
+            if (err) throw err
+        })
+        console.log(body)
+        res.status(200).json({ message: "added" })
+    } else if (emailChecker != null) {
+        res.status(200).json({ message: "emailTaken" })
+    } else {
+        res.status(200).json({ message: "unreachable" })
     }
 }
 /*
@@ -120,10 +138,6 @@ export const deleteAllAdmins = (req, res) => {
     })
 }
 
-
-
-
-
 //checks if the email exists
 async function validateEmail(email) {
     var responses
@@ -136,3 +150,4 @@ async function validateEmail(email) {
     })
     return responses;
 }
+
