@@ -1,6 +1,6 @@
 import { addTestComment, deleteAllComments, allCommentsByCompany, addComment, allCommentsAdmin } from '../controllers/commentController'
 
-import authentication from './middleWare'
+import {authenticateToke} from './middleWare.js'
 
 const routes = (app) => {
     //creates a test component
@@ -20,7 +20,8 @@ const routes = (app) => {
             }, allCommentsByCompany),
         //add comment
         app.route('/api/addComment')
-            .get((req, res, next) => {
+            .post( authenticateToke ,(req, res, next) => {
+                res.setHeader('Access-Control-Allow-Origin', '*');
                 next();
             }, addComment),
         app.route('/api/allCommentsAdmin')

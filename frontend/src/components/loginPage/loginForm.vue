@@ -37,7 +37,7 @@
 
       <div class="buttonGroup">
         <b-button type="submit" variant="primary" class="buttonSubmit">Login</b-button>
-        <b-button class="buttonForgot" variant="danger">Forgot Login </b-button>
+        <b-button class="buttonForgot" v-on:click="reRoute" variant="danger">Dont have an account? Register </b-button>
       </div>
     </b-form>
   </div>
@@ -57,6 +57,9 @@ export default {
     };
   },
   methods:{ 
+    reRoute(){
+      this.$router.push("/register")
+    },
    onSubmit(evt){
           evt.preventDefault();
       this.$http

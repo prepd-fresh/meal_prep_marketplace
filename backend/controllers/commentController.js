@@ -24,20 +24,20 @@ export const addTestComment = (req,res) =>{
 }
 
 export const addComment = (req,res) =>{
-    const commentData = JSON.parse(req.body.comment)
-    console.log(comment)
+    const commentData = JSON.parse(req.body.newComment)
+   
 
     var data = new commentModel({
-        email: commentData.email,
+        email: req.user.email,
         companyName: commentData.companyName,
-        content: commentData.content,
-        date: commentData.date,
+        content: commentData.message,
+        date: Date.now(),
         rating: commentData.rating
     })
     data.save((err) =>{
         if(err) throw err
     })
-    res.status(200).json({message:"true"})
+    res.status(200).json({message: "added"})
     res.end(); 
 }
 export const deleteAllComments = (req,res) => {
