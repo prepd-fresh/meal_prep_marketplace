@@ -1,32 +1,41 @@
 <template>
-  <div>
-    <b-navbar class="navBar" toggleable="lg" type="dark" variant="info" >
-      <b-navbar-brand class="navBand" href="/admin">
-        <b-img :src="images.logoSmall" class="logoSmall"></b-img>
-      </b-navbar-brand>
+<div>
+    <b-navbar class="navBar" toggleable="lg" type="dark" variant="info">
+        <b-navbar-brand class="navBand" href="/admin">
+            <b-img :src="images.logoSmall" class="logoSmall"></b-img>
+        </b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse" ></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item href="/admin/#" class="navBand">logout</b-nav-item>
-        </b-navbar-nav>
+        <b-collapse id="nav-collapse" is-nav>
+            <b-navbar-nav>
+                <b-nav-item v-on:click="logout" class="navBand">Logout</b-nav-item>
+            </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
-      </b-collapse>
+            <!-- Right aligned nav items -->
+        </b-collapse>
     </b-navbar>
-  </div>
+</div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      images: {
-        logoSmall: require("../../assets/images/small-logo.png")
-      }
-    };
-  }
+    data() {
+        return {
+            images: {
+                logoSmall: require("../../assets/images/small-logo.png")
+            }
+        };
+    },
+    methods: {
+        logout: function () {
+            this.$cookie.delete("Auth")
+            this.$cookie.delete("role")
+            this.$router.push("/")
+
+        },
+    }
+
 };
 </script>
 

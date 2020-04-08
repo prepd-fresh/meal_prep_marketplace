@@ -1,8 +1,8 @@
 <template lang="html">
   <div>
-      <h1>test</h1>
       <navigationloggedIn/>
-      <slot />
+      
+      <slot/>
   </div>
 </template>
 
@@ -12,7 +12,13 @@ import navigationloggedIn from "@/components/loggedInComponents/loggedInNavigati
 export default {
     components:{
      navigationloggedIn
-    }
+    },
+    data(){
+      return{
+        form:'test'
+      }
+    },
+
 }
 </script>
 <style lang="css" scoped>

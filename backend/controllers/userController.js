@@ -70,7 +70,8 @@ export const loginUser = async (req, res) => {
         }
     }).then(async (response) => {
           if (response !== null) {
-               await comparePasswords(password, dbUser.password).then((result) =>{
+              console.log(dbUser.password)
+               await comparePasswords(password, await ddbUser.password).then((result) =>{
                 console.log(result)
                 if (result === true) {
                     const accessToken = jwt.sign(dbUser.toJSON(), process.env.ACCESS_SECRET_TOKEN)
@@ -79,13 +80,11 @@ export const loginUser = async (req, res) => {
                 else {
                     res.status(200).json({ message: "false" })
                 }
-              })
+              }).catch((err) => {console.log(err)})
           }
        
     })
 }
-
-
 
 async function comparePasswords(currentPassword, dbPassword) {
     let flag = false
