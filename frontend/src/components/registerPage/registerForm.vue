@@ -120,6 +120,7 @@ export default {
         .post(API_URL, {
           newUser: JSON.stringify(this.form)
         }).then(response =>{
+          console.log(response.data.message)
             if(response.data.message === "added"){
               this.errorEmail = false;
               this.$router.push('/login')
