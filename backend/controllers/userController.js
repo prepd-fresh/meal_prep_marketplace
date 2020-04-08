@@ -96,6 +96,7 @@ export const registerUser = async (req, res) => {
     var body = JSON.parse(req.body.newUser);
 
     var emailChecker = await validateEmail(body.email).catch(() => " promis rejected email checer")
+     
     
     //if the email checker value is null that meas a user dosnt exit with that email
     if (emailChecker === null) {

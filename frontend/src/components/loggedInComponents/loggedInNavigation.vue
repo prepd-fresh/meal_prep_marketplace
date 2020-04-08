@@ -130,6 +130,9 @@ export default {
         logout: function () {
             //should kill cookie here
             this.$router.push("/")
+        },
+        onSubmit:function(){
+            alert("searching for company")
         }
     }
 };

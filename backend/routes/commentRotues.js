@@ -1,4 +1,4 @@
-import { addTestComment, deleteAllComments, allCommentsByCompany, addComment, allCommentsAdmin } from '../controllers/commentController'
+import { addTestComment, deleteAllComments, allCommentsByCompany, addComment, allCommentsAdmin,deleteCommentById } from '../controllers/commentController'
 
 import {authenticateToke} from './middleWare.js'
 
@@ -28,6 +28,10 @@ const routes = (app) => {
             .get((req, res, next) => {
                 next();
             }, allCommentsAdmin)
+        app.route('/api/deleteComment')
+        .post((req,res,next) =>{
+            next()
+        }, deleteCommentById)
 
 
 }

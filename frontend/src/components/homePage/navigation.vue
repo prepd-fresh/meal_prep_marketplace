@@ -113,6 +113,15 @@ export default {
             }
         };
     },
+    beforeCreate: function(){
+        if(this.$cookie.get("Auth") !== null && this.$cookie.get("role") !== null){
+            if(this.$cookie.get("role") === "user")
+                this.$router.push("/home")
+            else if(this.$cookie.get("role") === "admin"){
+                this.$router.push("/admin")
+            }
+        }
+    },
     methods: {
         clearForm: function () {
             this.form.deliveryDays = []
@@ -123,6 +132,9 @@ export default {
             this.form.vegetarian = ''
             this.form.vegan = ''
             this.form.extraProtien = ''
+        },
+        onSubmit:function(){
+            alert("needs to be implemented")
         }
     }
 };

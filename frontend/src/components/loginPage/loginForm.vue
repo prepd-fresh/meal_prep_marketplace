@@ -70,6 +70,7 @@ export default {
               this.$cookie.set("Auth", response.data.token,{expires: "3h"})
               this.$cookie.set("role", response.data.role,{expires: "3h"})
               if(response.data.role === 'admin'){
+                console.log("here")
                   this.$router.push("/admin")
               }else{
                 this.$router.push("/home")

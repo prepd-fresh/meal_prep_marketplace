@@ -61,13 +61,13 @@
   .star {
     display: inline-block;
     cursor: pointer;
-    &:hover {
+    
       &~.star {
         &:not(.active) {
           color: inherit;
         }
       }
-    }
+    
   }
   .active {
     color: $active-color;

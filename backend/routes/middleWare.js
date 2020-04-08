@@ -4,7 +4,6 @@ require('dotenv').config();
 
 export const authenticateToke = (req, res, next) =>{
     const authHeader = req.headers['authorization']
-    console.log(req.headers['authorization'])
     const header = authHeader.split(' ')
     const token = header[1];
     if(token === null) res.sendStatus(401)

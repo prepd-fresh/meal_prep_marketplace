@@ -418,7 +418,6 @@ export default {
             ).then(response =>{
                 if(response.data.message === "true"){
                     const index = this.companys.findIndex(company => company._id === id)
-                    console.log(index)
                     if(~index){
                         this.companys.splice(index,1)
                     }

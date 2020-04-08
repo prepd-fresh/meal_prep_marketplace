@@ -1,14 +1,13 @@
 <template>
 <div>
-    <h1 class="mainTitle">{{this.companyName}}</h1>
+    <h1 class="mainTitle">{{this.newComment.companyName}}</h1>
     <b-button v-b-toggle.collapse-1 variant="primary" class="reviewButton">Leave a review</b-button>
     <b-collapse id="collapse-1" class="mt-2">
         <b-card>
             <div>
                 <h5>Rating:</h5>
                 <reviewStars :grade="0" @starCount="onReviewStarClicked" />
-                <b-form-textarea id="textarea" v-model="comment.message" placeholder="Enter review..." rows="3" max-rows="6" v-on:keyup="countdown"></b-form-textarea>
-
+                <b-form-textarea id="textarea" v-model="newComment.content" placeholder="Enter review..." rows="3" max-rows="6" v-on:keyup="countdown"></b-form-textarea>
                 <pre class="mt-3 mb-0" v-bind:class="{'text-danger': hasError }">Charcters left: {{remainingCount}}</pre>
 
             </div>
@@ -17,7 +16,7 @@
     </b-collapse>
     <h6>Other Reviews</h6>
     <ul v-for="(comment, index) in allComments" v-bind:key="index.id" class="list" data-spy="scroll">
-        <li>
+        <li class = "reviewList">
             <userReviews :review=comment />
         </li>
     </ul>
@@ -32,19 +31,20 @@ import userReviews from './userReviews'
 export default {
     data() {
         return {
+            //comment: '',
             companyName: this.companyCurrentName,
             maxCount: 150,
             remainingCount: 150,
-            message: '',
             hasError: false,
             allComments: '',
+            //rating: 0,
 
-            comment: {
+            newComment: {
+               companyName: this.companyCurrentName,
+                rating: 0,
                 email: '',
-                companyName: this.companyCurrentName,
-                message: '',
-                rating: 0
-
+                content: '',
+                date: '',
             }
         }
     },
@@ -58,6 +58,7 @@ export default {
         this.$http.post(API_URL, {
             companyName: JSON.stringify(this.companyCurrentName)
         }).then(response => {
+            this.comment = this.companyCurrentName
             this.allComments = response.data
             console.log(response)
         }).catch((error) => {
@@ -67,48 +68,53 @@ export default {
     },
     methods: {
         countdown: function () {
-            this.remainingCount = this.maxCount - this.message.length;
+            this.remainingCount = this.maxCount - this.newComment.content.length;
             this.hasError = this.remainingCount < 0;
         },
         onReviewStarClicked(value) {
-            this.comment.rating = value
+            this.newComment.rating = value
+        },
+        validateComment() {
+            if (this.newComment.content.length == 0 || this.newComment.content.length > 150) {
+                return true
+            } else if (this.comment.score === 0) {
+                return false
+            } else {
+                return true
+            }
+
         },
         submitComment() {
+            //checks if user is logged in
             if (this.$cookie.get("Auth") === null) {
                 alert("Please login")
                 this.$router.push("/login")
             }
-            console.log(this.$cookie.get("Auth"))
+
             if (this.validateComment() == true) {
                 this.$http.post(API_URL_ADD_COMMENT, {
-                    newComment: JSON.stringify(this.comment)
+                    newComment: JSON.stringify(this.newComment)
                 }, {
                     headers: {
                         Authorization: "Bearer " + this.$cookie.get("Auth")
                     }
                 }).then(response => {
                     console.log(response.data.message)
-                    if(response.data.message === "added"){
-                        this.allComments.push(this.comment)
+                    if (response.data.message === "added") {
+                        this.newComment.email = response.data.email
+                        this.newComment.date = response.data.date
+                        this.allComments.push(this.newComment)
+                    }
+                    if(response.data.message === "AlreadyCommented"){
+                        //alert("you cannot comment on this company")
+                        console.log("login")
                     }
                 }).catch((error) => {
                     console.log(error.response)
                 })
             }
-        },
-        validateComment() {
-            if (this.message.length == 0 || this.message.length > 150) {
-                return true
-            } else if (this.comment.rating === 0) {
-                return false
-            } else {
-                return true
-            }
-
         }
-
-    }
-
+    },
 }
 </script>
 
@@ -135,5 +141,8 @@ export default {
 .list {
     list-style-type: none;
     margin-right: 20px;
+}
+.reviewList{
+    margin-top: 10px;
 }
 </style>
