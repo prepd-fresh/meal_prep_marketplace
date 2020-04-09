@@ -71,7 +71,7 @@ export const loginUser = async (req, res) => {
     }).then(async (response) => {
           if (response !== null) {
               console.log(dbUser.password)
-               await comparePasswords(password, await ddbUser.password).then((result) =>{
+               await comparePasswords(password, await dbUser.password).then((result) =>{
                 console.log(result)
                 if (result === true) {
                     const accessToken = jwt.sign(dbUser.toJSON(), process.env.ACCESS_SECRET_TOKEN)
