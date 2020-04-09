@@ -165,5 +165,8 @@ export default {
         margin-top: 15%;
         width: 100%;
     }
+    .navBar{
+        width: 100%;
+    }
 }
 </style>

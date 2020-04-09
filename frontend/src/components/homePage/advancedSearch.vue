@@ -102,7 +102,7 @@ export default {
             this.form.extraProtien = ''
         },
          onSubmit: function () {
-           alert("test")
+           this.$emit("clickSearch",this.form)
         }
     }
 }
