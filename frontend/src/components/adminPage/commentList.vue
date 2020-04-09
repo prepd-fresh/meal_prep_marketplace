@@ -41,7 +41,7 @@
             </td>
             <td>
 
-                <BIconTrash class="delete" scale="1.4" v-on:click="deleteComment(comment._id)"/>
+                <BIconTrash class="delete" scale="1.4" v-on:click="deleteComment(comment._id)" />
 
             </td>
         </tr>
@@ -71,32 +71,32 @@ export default {
                 console.log(error.response)
             })
     },
-    methods:{
-        deleteComment:function(id){
+    methods: {
+        deleteComment: function (id) {
             this.$http.post(
-                API_URL_DELETE,{
-                    commentID:JSON.stringify(id)
+                API_URL_DELETE, {
+                    commentID: JSON.stringify(id)
                 }
-            ).then(response =>{
-                if(response.data.message === "true"){
+            ).then(response => {
+                if (response.data.message === "true") {
                     const index = this.allComments.findIndex(comments => comments._id === id)
-                    if(~index){
+                    if (~index) {
                         this.makeToast()
-                        this.allComments.splice(index,1)
-                    } 
+                        this.allComments.splice(index, 1)
+                    }
                 }
             })
         },
-        makeToast(append = false, ){
-        this.$bvToast.toast(`deleted comment successfuly  `, {
-          title:"DELETE DONE",
-          autoHideDelay: 5000,
-          appendToast: append,
-          variant:"danger"
-        }) 
+        makeToast(append = false, ) {
+            this.$bvToast.toast(`deleted comment successfuly  `, {
+                title: "DELETION DONE",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "danger"
+            })
         }
     },
-    components:{
+    components: {
         BIconTrash
     }
 }

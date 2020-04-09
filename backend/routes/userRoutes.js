@@ -1,11 +1,10 @@
 import{
     showAllUsers,
     createTestUser,
-    deleteAllUsers,
     loginUser,
-    deleteAllAdmins,
     createAdminUser,
-    registerUser
+    registerUser,
+    deleteUserByID
 } from '../controllers/userController'
 
 import authentication from './middleWare'
@@ -23,12 +22,6 @@ const routes = (app) =>{
         next();
     }, createAdminUser)
 
-    //Delete all Admins
-    app.route('/api/deleteAdmin')
-    .get((req,res,next) =>{
-        next();
-    }, deleteAllAdmins)
-
     //Registers router
     app.route('/api/register')
     .post((req,res,next) =>{
@@ -41,17 +34,17 @@ const routes = (app) =>{
         next();
     },loginUser)
     
-    //Displays all users
-    
+    //Displays all users-
     app.route('/api/allusers')
     .get((req,res,next) =>{
         next();
     },showAllUsers)
     
-    app.route('/api/delete')
-    .get((req,res,next) =>{
+    app.route('/api/deleteuser')
+    .post((req,res,next) =>{
         next();
-    },deleteAllUsers)
+    },deleteUserByID)
+
 
 
 }

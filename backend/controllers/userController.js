@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import Schema from '../models/userModel';
 import bcrypt from 'bcrypt'
 import User from '../models/userModel';
+import mongodb from 'mongodb'
 import jwt from 'jsonwebtoken'
 import e from 'express';
 
@@ -122,26 +123,14 @@ export const registerUser = async (req, res) => {
     })
 }
 
-/*
-delete all users
-*/
-export const deleteAllUsers = (req, res) => {
-    userModel.deleteMany({ email: 'test@test.com' }, (err) => {
-        if (err) {
-            res.send(err);
-        }
-        res.send("deleted all users")
-        res.end();
+export const deleteUserByID = (req, res) =>{
+    var userId = JSON.parse(req.body.userID)
+  
+    userModel.deleteOne({_id: new mongodb.ObjectID(userId)}, (err, user) =>{
+        if(err) res.send(err)
     })
+    res.status(200).json({message:"true"})
 }
-export const deleteAllAdmins = (req, res) => {
-    userModel.deleteMany({ email: 'admin@gmail.com' }, (err) => {
-        if (err) {
-            res.send(err);
-        }
-        res.send("deleted all users")
-        res.end();
-    })
-}
+
 
 
