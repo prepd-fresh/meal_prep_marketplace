@@ -100,9 +100,24 @@ export default {
             this.form.vegetarian = ''
             this.form.vegan = ''
             this.form.extraProtien = ''
+            this.$emit("clearedForm",true)
         },
          onSubmit: function () {
-           this.$emit("clickSearch",this.form)
+             if(this.emptyChecker() === true){
+                this.$emit("clickSearch","empty")
+             }else{
+                this.$emit("clickSearch",this.form) 
+             }
+                
+        },
+        emptyChecker: function(){
+            if(this.form.deliveryDays.length ===0 && this.form.deliveryLocations.length ===0 && this.form.paymentOptions.length ===0 && 
+                this.form.menuChanges.length ===0 && this.form.sizeOptions.length === 0 && this.form.vegetarian.length === 0 && 
+                this.form.vegan.length === 0 && this.form.extraProtien.length ===0){
+                    return true
+            }else{
+                return false;
+            }
         }
     }
 }

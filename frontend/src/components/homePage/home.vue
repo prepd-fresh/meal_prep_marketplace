@@ -5,7 +5,7 @@
         <BIconCaretRight scale="1.4" />
     </b-button>
 
-    <advancedSearch id="sidebar-1" @clickSearch="onSearch" />
+    <advancedSearch id="sidebar-1" @clickSearch="onSearch" @clearedForm="restCompanys" />
     <div class="d-flex align-items-center flex-column">
         <div v-for="n in this.companys.length" v-bind:key="n" class="mb-4">
             <company :idNumber="n" :company="companys[n- 1]" />
@@ -26,7 +26,8 @@ export default {
     data() {
         return {
             companys: {},
-            searchTest: this.search
+            tempCompanys: {}
+
         };
     },
     components: {
@@ -39,21 +40,64 @@ export default {
         this.$http.get(API_URL)
             .then(response => {
                 this.companys = response.data
-                console.log(this.search)
+                this.tempCompanys = response.data
             }).catch(error => {
                 console.log(error)
             })
     },
     methods: {
         onSearch(value) {
-        console.log(value)
-        this.companys = this.companys.filter(item => !item.paymentOptions.includes("Stripe"))
-        
-           
-        }
-    }
+            var searchItems = JSON.parse(JSON.stringify(value))
+            this.companys = this.tempCompanys
+            if (value === "empty") {
+                this.companys = this.tempCompanys
+            } else {
+                if (searchItems.deliveryDays.length !== 0) {
+                    searchItems.deliveryDays.forEach(element => {
+                        this.companys = this.companys.filter(item => (item.deliveryDays.includes(element)))
+                    });
+                }
+                if (searchItems.deliveryLocations.length !== 0) {
+                    searchItems.deliveryLocations.forEach(element => {
+                        this.companys = this.companys.filter(item => (item.deliveryLocations.includes(element)))
+                    });
+                }
+                if (searchItems.paymentOptions.length !== 0) {
+                    searchItems.paymentOptions.forEach(element => {
+                        this.companys = this.companys.filter(item => (item.paymentOptions.includes(element)))
+                    });
+                }
+                if (searchItems.menuChanges.length !== 0) {
+                    this.companys =this.companys.filter(item => (item.menuChanges.includes(searchItems.menuChanges)))
+                
+                }
+                if (searchItems.sizeOptions.length !== 0) {
+                    this.companys =this.companys.filter(item => (item.sizeOptions.includes(searchItems.sizeOptions)))
+                
+                }
+                if (searchItems.vegetarian.length !== 0) {
+                    this.companys =this.companys.filter(item => (item.vegetarian.includes(searchItems.vegetarian)))
+                
+                }
+                if (searchItems.vegan.length !== 0) {
+                    this.companys =this.companys.filter(item => (item.vegan.includes(searchItems.vegan)))
+                
+                }
+                 if (searchItems.extraProtien.length !== 0) {
+                    this.companys =this.companys.filter(item => (item.extraProtien.includes(searchItems.extraProtien)))
+                
+                }
+            }
 
-};
+        },
+        restCompanys(value) {
+            if (value === true) {
+                this.companys = this.tempCompanys
+            }
+        }
+    },
+
+}
 </script>
 
 <style>

@@ -22,6 +22,12 @@
                   {{option}}
                 </span>
               </div>
+               <h5>delivery days</h5>
+              <div class="d-flex mb-4">
+                <span class="badge badge-secondary mr-2 text-capitalize" v-for="(option, index) in company.deliveryDays" v-bind:key="index.id">
+                  {{option}}
+                </span>
+              </div>
           </b-card-text>
         </b-card-body>
       </b-col>
