@@ -11,6 +11,7 @@ var companySchema = exports.companySchema = new _mongoose.Schema({
     name: String,
     deliveryLocations: [],
     deliveryDays: [],
+    description: String,
     cutOff:{
         time: String,
         zone:String,

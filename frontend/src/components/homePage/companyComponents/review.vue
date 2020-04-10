@@ -1,13 +1,12 @@
 <template>
 <div>
-    <h1 class="mainTitle">{{this.newComment.companyName}}</h1>
     <b-button v-b-toggle.collapse-1 variant="primary" class="reviewButton">Leave a review</b-button>
     <b-collapse id="collapse-1" class="mt-2">
         <b-card>
             <div>
                 <h5>Rating:</h5>
                 <reviewStars :grade="0" @starCount="onReviewStarClicked" />
-                <b-form-textarea id="textarea" v-model="newComment.content" placeholder="Enter review..." rows="3" max-rows="6" v-on:keyup="countdown"></b-form-textarea>
+                <b-form-textarea class="textArea" id="textarea" v-model="newComment.content" placeholder="Enter review..." rows="3" max-rows="6" v-on:keyup="countdown"></b-form-textarea>
                 <pre class="mt-3 mb-0" v-bind:class="{'text-danger': hasError }">Charcters left: {{remainingCount}}</pre>
 
             </div>
@@ -144,5 +143,8 @@ export default {
 }
 .reviewList{
     margin-top: 10px;
+}
+.textArea{
+    margin-top:10px;
 }
 </style>

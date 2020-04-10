@@ -1,8 +1,9 @@
 <template>
   <div>
     <h2 class="dn-600">{{this.companyCurrentName}}</h2>
+    
     <b-tabs content-class="mt-4" class="tab">
-      <b-tab title="Payment Options">
+      <b-tab title="General information">
         <paymentOptions :paymentInfo ="paymentInfo" />
       </b-tab>
       <b-tab title="Menu Options" >
@@ -34,8 +35,10 @@ export default {
         companyCurrentName:  this.companyInformation.name,
         //spliting all the data into sub groups and passing it down the component tree
         paymentInfo:{
+          description: this.companyInformation.description,
           paymentOptions:  this.companyInformation.paymentOptions,
-          priceRange:  this.companyInformation.priceRange
+          priceRange:  this.companyInformation.priceRange,
+          deliveryDays: this.companyInformation.deliveryDays
         },
         companyMenuOptions:{
            bulkDiscount: this.companyInformation.bulkDiscount,

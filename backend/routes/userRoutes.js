@@ -4,10 +4,10 @@ import{
     loginUser,
     createAdminUser,
     registerUser,
+    registerAdmin,
     deleteUserByID
 } from '../controllers/userController'
-
-import authentication from './middleWare'
+import {authenticateToke} from './middleWare.js'
 
 const routes = (app) =>{
     //Creates a User
@@ -41,9 +41,16 @@ const routes = (app) =>{
     },showAllUsers)
     
     app.route('/api/deleteuser')
-    .post((req,res,next) =>{
+    .post(authenticateToke, (req,res,next) =>{
+        res.setHeader('Access-Control-Allow-Origin', '*');
         next();
     },deleteUserByID)
+
+    app.route('/api/registerAdmin')
+    .post(authenticateToke, (req,res,next) =>{
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+    },registerAdmin)
 
 
 

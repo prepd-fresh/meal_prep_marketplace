@@ -20,7 +20,12 @@
                     <b-form-checkbox value="GTA">GTA</b-form-checkbox>
                     <b-form-checkbox value="Brampton">Brampton</b-form-checkbox>
                     <b-form-checkbox value="Hamilton">Hamilton</b-form-checkbox>
-                    <b-form-checkbox value="Caledon">Caledon</b-form-checkbox>
+                    <b-form-checkbox value="Burlington">Burlington</b-form-checkbox>
+                    <b-form-checkbox value="Vaughan">Vaughan</b-form-checkbox>
+                    <b-form-checkbox value="Mississauga">Mississuaga</b-form-checkbox>
+                    <b-form-checkbox value="Guelph">Guelph</b-form-checkbox>
+                    <b-form-checkbox value="Waterloo">Waterloo</b-form-checkbox>
+                    <b-form-checkbox value="St.Catharines">St.Catharines</b-form-checkbox>
                 </b-form-checkbox-group>
             </b-form-group>
             <b-form-group label="Payment Options:">
@@ -90,8 +95,8 @@ export default {
             }
         };
     },
-    methods:{
-           clearForm: function () {
+    methods: {
+        clearForm: function () {
             this.form.deliveryDays = []
             this.form.deliveryLocations = []
             this.form.paymentOptions = []
@@ -100,22 +105,22 @@ export default {
             this.form.vegetarian = ''
             this.form.vegan = ''
             this.form.extraProtien = ''
-            this.$emit("clearedForm",true)
+            this.$emit("clearedForm", true)
         },
-         onSubmit: function () {
-             if(this.emptyChecker() === true){
-                this.$emit("clickSearch","empty")
-             }else{
-                this.$emit("clickSearch",this.form) 
-             }
-                
+        onSubmit: function () {
+            if (this.emptyChecker() === true) {
+                this.$emit("clickSearch", "empty")
+            } else {
+                this.$emit("clickSearch", this.form)
+            }
+
         },
-        emptyChecker: function(){
-            if(this.form.deliveryDays.length ===0 && this.form.deliveryLocations.length ===0 && this.form.paymentOptions.length ===0 && 
-                this.form.menuChanges.length ===0 && this.form.sizeOptions.length === 0 && this.form.vegetarian.length === 0 && 
-                this.form.vegan.length === 0 && this.form.extraProtien.length ===0){
-                    return true
-            }else{
+        emptyChecker: function () {
+            if (this.form.deliveryDays.length === 0 && this.form.deliveryLocations.length === 0 && this.form.paymentOptions.length === 0 &&
+                this.form.menuChanges.length === 0 && this.form.sizeOptions.length === 0 && this.form.vegetarian.length === 0 &&
+                this.form.vegan.length === 0 && this.form.extraProtien.length === 0) {
+                return true
+            } else {
                 return false;
             }
         }

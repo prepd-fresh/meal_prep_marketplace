@@ -48,6 +48,7 @@ export const addCompany = (req,res) =>{
     var companyData = new companyModel({
         name: company.name,
         deliveryLocations: company.deliveryLocations,
+        description: company.description,
         deliveryDays: company.deliveryDays,
         cutOff: {
             time: company.cutOff.time,

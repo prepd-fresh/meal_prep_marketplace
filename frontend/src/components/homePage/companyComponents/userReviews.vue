@@ -5,7 +5,6 @@
       <h6 class="card-subtitle mb-2 text-muted"><testRating :grade="review.rating"/></h6>
       <h6>{{singleReview.email}}</h6>
       <p>{{singleReview.content}}</p>
-      <p>{{singleReview.date}}</p>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1>All Users</h1>
+    <h1>All Users {{this.newUsers}}</h1>
     <b-table-simple responsive class="table">
         <b-thead>
             <tr>
@@ -44,9 +44,11 @@ var API_DELETE_USER_URL = "http://localhost:3000/api/deleteuser"
 export default {
     data() {
         return {
-            users: ""
+            users:'',
+            newUsers: this.newAdmin
         };
     },
+    props:["newAdmin"],
     created: function () {
         this.$http
             .get(API_URL)
@@ -62,6 +64,10 @@ export default {
             this.$http.post(
                 API_DELETE_USER_URL, {
                     userID: JSON.stringify(id)
+                }, {
+                    headers: {
+                        Authorization: "Bearer " + this.$cookie.get("Auth")
+                    }
                 }
             ).then(response => {
                 if (response.data.message === "true") {
@@ -80,7 +86,8 @@ export default {
                 appendToast: append,
                 variant: "danger"
             })
-        }
+        },
+
     }
 };
 </script>

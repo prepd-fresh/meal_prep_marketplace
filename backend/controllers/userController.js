@@ -27,9 +27,9 @@ function testUser() {
 }
 function testAdmin() {
     var user = new userModel({
-        email: "admin@gmail.com",
+        email: "adam.kita99@gmail.com",
         name: "Adamin",
-        password: "admin",
+        password: "pielikei",
         role: "admin"
     })
     user.save((err) => {
@@ -66,12 +66,13 @@ export const loginUser = async (req, res) => {
     await User.findOne({ email: email }, function (err, user) {
         if (err) {
             console.log(err)
-        } else {
-            dbUser = user
-        }
+        } 
+        dbUser = user
+        
     }).then(async (response) => {
           if (response !== null) {
               console.log(dbUser.password)
+              console.log(password)
                await comparePasswords(password, await dbUser.password).then((result) =>{
                 console.log(result)
                 if (result === true) {
@@ -94,6 +95,37 @@ async function comparePasswords(currentPassword, dbPassword) {
         return flag = result
     })
     return flag
+}
+export const registerAdmin = async (req,res) =>{
+    var body = JSON.parse(req.body.newAdmin);
+    let userRole = req.user.role
+    if(userRole === 'admin'){
+    await User.findOne({ email: body.email }, function (err, user) {
+        if (err) {
+            console.log(err)
+        } else {
+            //if there is no user with that email 
+            if (user === null) {
+                var addUser = new userModel({
+                    email: body.email,
+                    name: body.name,
+                    password: body.password,
+                    role: "admin"
+                })
+                addUser.save(function (err) {
+                    if (err) throw err
+                })
+                res.status(200).json({ message: "added" })
+            } else if (user != null) {
+                res.status(200).json({ message: "emailTaken" })
+            } else {
+                res.status(200).json({ message: "unreachable" })
+            }
+        }
+    })
+}else{
+    res.status(200).json({ message: "notAdmin" })
+}
 }
 export const registerUser = async (req, res) => {
     var body = JSON.parse(req.body.newUser);
@@ -130,6 +162,15 @@ export const deleteUserByID = (req, res) =>{
         if(err) res.send(err)
     })
     res.status(200).json({message:"true"})
+}
+export const deleteAllUsers = (req,res) =>{
+    userModel.delete({}, (err)=>{
+        if(err){
+            res.send(err)
+        }
+        res.send("deletedAllUsers")
+        res.end()
+    })
 }
 
 
