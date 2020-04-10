@@ -1,6 +1,6 @@
 <template>
 <div>
-    <b-modal id="EditCompanyModal" title="Edit Company" ok-only size="xl" v-bind:hide-footer="true" >
+    <b-modal id="EditCompanyModal" title="Edit Company" ok-only size="xl" v-bind:hide-footer="true" @submit="updateCompany">
         <div class="companyForm">
             <b-form-group id="input-group-1" label="Company Name:" label-for="input-1" description="Please enter the name">
                 <b-form-input id="input-1" v-model="form.name" type="text" required placeholder="Enter Company name"></b-form-input>
@@ -117,7 +117,7 @@
             <b-form-group id="input-group-1" label="Intagram Followers: " label-for="input-1" description="Please enter the higest meal price">
                 <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter number of Instagram followers"></b-form-input>
             </b-form-group>
-            <b-button  variant="outline-primary">submit</b-button>
+            <b-button  variant="outline-primary" >submit</b-button>
         </div>
     </b-modal>
 
@@ -261,6 +261,7 @@
 var API_URL = 'http://localhost:3000/api/allCompanys'
 var API_SINGLE = 'http://localhost:3000/api/singleCompany'
 var API_URL_DELETE = 'http://localhost:3000/api/delete-company'
+var API_UPDATE = 'http://localhost:3000/api/update-company'
 import {
     BIconTrash,
     BIconPencil
@@ -269,35 +270,9 @@ import {
 export default {
     data() {
         return {
+            currentCompany: -1,
             companys:[],
-            form: {
-                name: '',
-                deliveryLocations: [],
-                deliveryDays: [],
-                cutOff: {
-                    time: '',
-                    zone:''
-                },
-                paymentOptions: [],
-                priceRange: {
-                    lowest: '',
-                    highest: ''
-                },
-                bulkDiscount: null,
-                numberOfMeals: '',
-                mealOptions: {
-                    breakFast: '',
-                    lunch: '',
-                    dinner: '',
-                    snacks: ''
-                },
-                menuChanges: '',
-                sizeOptions: '',
-                vegetarian: '',
-                extraProtien: '',
-                vegan: '',
-                instagramFollowers: ''
-            },
+            form: {},
             orderCutOffTimeZone: [{
                 value: 'AM',
                 text: 'AM'
@@ -402,6 +377,7 @@ export default {
         BIconPencil
     },
     created: function () {
+        this.resetForm();
         this.$http.get(API_URL)
             .then(response => {
                 this.companys = response.data
@@ -439,7 +415,50 @@ export default {
                 console.log(err.response);
             });
 
+            this.currentCompany(currentCompanyID);
             this.form = companyData;
+        },
+        updateCompany: async function() {
+            await this.$http.post(API_UPDATE, {company: JSON.stringify(this.form)})
+            .then(response => {
+                if(response.message){
+                    console.log('success');
+                    this.currentCompany = -1;
+                    this.resetForm();
+                }
+            }).catch((err) => {
+                console.log(err.response);
+            });
+        },
+        resetForm: function() {
+            this.form = {
+                name: '',
+                deliveryLocations: [],
+                deliveryDays: [],
+                cutOff: {
+                    time: '',
+                    zone:''
+                },
+                paymentOptions: [],
+                priceRange: {
+                    lowest: '',
+                    highest: ''
+                },
+                bulkDiscount: null,
+                numberOfMeals: '',
+                mealOptions: {
+                    breakFast: '',
+                    lunch: '',
+                    dinner: '',
+                    snacks: ''
+                },
+                menuChanges: '',
+                sizeOptions: '',
+                vegetarian: '',
+                extraProtien: '',
+                vegan: '',
+                instagramFollowers: ''
+            }
         }
     }
 }
