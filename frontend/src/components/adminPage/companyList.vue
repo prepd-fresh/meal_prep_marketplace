@@ -14,7 +14,7 @@
                 </b-form-checkbox-group>
             </b-form-group>
             <b-form-group label="Delivery days:">
-                <b-form-checkbox-group id="checkbox-group-2" v-model="form.deliveryTimes" name="flavour-2">
+                <b-form-checkbox-group id="checkbox-group-2" v-model="form.deliveryDays" name="flavour-2">
                     <b-form-checkbox value="Monday">Monday</b-form-checkbox>
                     <b-form-checkbox value="Tuesday">Tuesday</b-form-checkbox>
                     <b-form-checkbox value="Wednesday">Wednesday</b-form-checkbox>
@@ -48,12 +48,12 @@
             <b-row>
                 <b-col>
                     <b-form-group id="input-group-1" label="Lowest:" label-for="input-1" description="Please enter the lowest meal price">
-                        <b-form-input id="input-1" v-model="form.priceRange.lowest" type="number" required placeholder="Enter lowest Price"></b-form-input>
+                        <b-form-input id="input-1" v-model="form.priceRange.lowest" type="number" step="0.01" required placeholder="Enter lowest Price"></b-form-input>
                     </b-form-group>
                 </b-col>
                 <b-col>
                     <b-form-group id="input-group-1" label="Highest:" label-for="input-1" description="Please enter the higest meal price">
-                        <b-form-input id="input-1" v-model="form.priceRange.highest" type="number" required placeholder="Enter highest Price"></b-form-input>
+                        <b-form-input id="input-1" v-model="form.priceRange.highest" type="number" step="0.01" required placeholder="Enter highest Price"></b-form-input>
                     </b-form-group>
                 </b-col>
             </b-row>
@@ -67,19 +67,19 @@
             <b-row>
                 <b-col>
                     <p>BreakFast: </p>
-                    <b-form-select v-model="form.mealOptions.breakFast" :options="mealOptions"></b-form-select>
+                    <b-form-select v-model="form.mealOptions[0].breakFast" :options="mealOptions"></b-form-select>
                 </b-col>
                 <b-col>
                     <p>Lunch:</p>
-                    <b-form-select label="Cut off" v-model="form.mealOptions.lunch" :options=" mealOptions"></b-form-select>
+                    <b-form-select label="Cut off" v-model="form.mealOptions[0].lunch" :options="mealOptions"></b-form-select>
                 </b-col>
                 <b-col>
                     <p>Dinner:</p>
-                    <b-form-select label="Cut off" v-model="form.mealOptions.dinner" :options=" mealOptions"></b-form-select>
+                    <b-form-select label="Cut off" v-model="form.mealOptions[0].dinner" :options="mealOptions"></b-form-select>
                 </b-col>
                 <b-col>
                     <p>Snacks:</p>
-                    <b-form-select label="Cut off" v-model="form.mealOptions.snacks" :options=" mealOptions"></b-form-select>
+                    <b-form-select label="Cut off" v-model="form.mealOptions[0].snacks" :options="mealOptions"></b-form-select>
                 </b-col>
             </b-row>
             <b-row>
@@ -417,15 +417,11 @@ export default {
 
             this.currentCompany = currentCompanyID;
             this.form = companyData;
-            console.log(this.form);
         },
         updateCompany: async function() {
-            console.log('submitted')
-            await this.$http.post(API_UPDATE, {company: JSON.stringify(this.form)})
+            await this.$http.put(API_UPDATE, {company: JSON.stringify(this.form)})
             .then(response => {
-                console.log(response.message);
                 if(response.message){
-                    console.log('success');
                     this.currentCompany = -1;
                     this.resetForm();
                 }
@@ -449,12 +445,12 @@ export default {
                 },
                 bulkDiscount: null,
                 numberOfMeals: '',
-                mealOptions: {
+                mealOptions: [{
                     breakFast: '',
                     lunch: '',
                     dinner: '',
                     snacks: ''
-                },
+                }],
                 menuChanges: '',
                 sizeOptions: '',
                 vegetarian: '',
