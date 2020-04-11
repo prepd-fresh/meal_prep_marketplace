@@ -30,7 +30,7 @@
         </b-form-group>
         <b-form-group label="Company Description/Statment:">
             <b-form-textarea id="textarea" v-model="form.description" placeholder="Enter Description..." rows="3" max-rows="6" v-on:keyup="countdown"></b-form-textarea>
-            <pre class="mt-3 mb-0" v-bind:class="{'text-danger': hasError }">Charcters left: {{remainingCount}}</pre>
+            <pre class="mt-3 mb-0" >Charcters left: {{remainingCount}}</pre>
         </b-form-group>
         <b-row>
             <b-col>

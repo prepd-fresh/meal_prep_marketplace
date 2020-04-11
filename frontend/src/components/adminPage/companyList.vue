@@ -1,7 +1,7 @@
 <template>
 <div>
     <b-modal id="EditCompanyModal" title="Edit Company" ok-only size="xl" v-bind:hide-footer="true" @submit="updateCompany">
-        <div class="companyForm">
+        <b-form @submit.stop.prevent="updateCompany" class="companyForm">
             <b-form-group id="input-group-1" label="Company Name:" label-for="input-1" description="Please enter the name">
                 <b-form-input id="input-1" v-model="form.name" type="text" required placeholder="Enter Company name"></b-form-input>
             </b-form-group>
@@ -117,8 +117,8 @@
             <b-form-group id="input-group-1" label="Intagram Followers: " label-for="input-1" description="Please enter the higest meal price">
                 <b-form-input id="input-1" v-model="form.instagramFollowers" type="number" required placeholder="Enter number of Instagram followers"></b-form-input>
             </b-form-group>
-            <b-button  variant="outline-primary" >submit</b-button>
-        </div>
+            <b-button  variant="outline-primary" type="submit">submit</b-button>
+        </b-form>
     </b-modal>
 
     <b-table-simple responsive class="table">
@@ -415,12 +415,15 @@ export default {
                 console.log(err.response);
             });
 
-            this.currentCompany(currentCompanyID);
+            this.currentCompany = currentCompanyID;
             this.form = companyData;
+            console.log(this.form);
         },
         updateCompany: async function() {
+            console.log('submitted')
             await this.$http.post(API_UPDATE, {company: JSON.stringify(this.form)})
             .then(response => {
+                console.log(response.message);
                 if(response.message){
                     console.log('success');
                     this.currentCompany = -1;

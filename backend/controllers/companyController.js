@@ -126,7 +126,7 @@ export const singleCompany = (req,  res )=>{
 }
 
 export const updateCompany = (req, res) => {
-    const companyID = JSON.parse(req.body.company.companyID);
+    const companyID = JSON.parse(req.body.company._id);
     const company = JSON.parse(req.body.company);
     companyModel.collection.updateOne({_id: new mongodb.ObjectID(companyID)}, company, (err) =>{
         if(err){
