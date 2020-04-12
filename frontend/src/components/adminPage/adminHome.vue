@@ -15,7 +15,7 @@
             <b-tab title="Company List">
                 <companyList v-if="reloaderCompany" />
             </b-tab>
-            <b-tab title="comments">
+            <b-tab title="Comments">
                 <commentList />
             </b-tab>
         </b-tabs>
