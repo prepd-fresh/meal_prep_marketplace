@@ -2,24 +2,24 @@
 <div>
     <div class="layout">
         <b-card class="cardMain" no-body style="max-width: 1000px;" @click="$bvModal.show('bv-modal-'+idNumber)">
-            <b-row no-gutters class="mh-264">
-                <b-col md="6">
-                    <b-card-img :src="images.foodPicture" class="rounded-0 mh-264 card-img"></b-card-img>
+            <b-row no-gutters>
+                <b-col lg="6">
+                    <b-card-img :src="images.foodPicture" class="rounded-0 card-img"></b-card-img>
                 </b-col>
-                <b-col md="6" class="mh-264 overflow-auto">
+                <b-col lg="6" class="overflow-auto">
                     <b-card-body>
                         <b-card-text>
                             <h4 class="header">{{company.name}}</h4>
                             <div class="secondary">
                                 <h5 class="secondayHeader">Delivery locations: </h5>
-                                <div class="d-flex mb-4">
-                                    <span class="badge badge-primary mr-2" v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
+                                <div class="d-flex flex-wrap mb-4">
+                                    <span class="d-flex align-items-center badge badge-primary mr-1 mb-1 justify-content-center" v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
                                         {{location}}
                                     </span>
                                 </div>
                                 <h5 class="secondayHeader">Payment Options</h5>
-                                <div class="d-flex mb-4">
-                                    <span class="badge badge-primary mr-2 text-capitalize" v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
+                                <div class="d-flex mb-4 flex-wrap">
+                                    <span class="d-flex align-items-center badge badge-warning mr-1 mb-1 text-capitalize justify-content-center" v-for="(option, index) in company.paymentOptions" v-bind:key="index.id">
                                         {{option}}
                                     </span>
                                 </div>
@@ -111,12 +111,6 @@ export default {
 
 ul {
     margin-bottom: 0 !important;
-}
-
-@media only screen and (min-width: 768px) {
-    .mh-264 {
-        max-height: 264px;
-    }
 }
 
 @media only screen and (max-width: 600px) {

@@ -6,10 +6,6 @@ import mongodb from 'mongodb'
 import jwt from 'jsonwebtoken'
 import e from 'express';
 
-//add .env file FUCK
-
-
-
 //required for the session token generation
 require('dotenv').config();
 const userModel = mongoose.model('User', Schema.userSchema)

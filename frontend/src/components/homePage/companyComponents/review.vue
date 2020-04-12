@@ -13,9 +13,9 @@
             <b-button class="submitReview" v-on:click="submitComment">Submit Review </b-button>
         </b-card>
     </b-collapse>
-    <h6>Other Reviews</h6>
-    <ul v-for="(comment, index) in allComments" v-bind:key="index.id" class="list" data-spy="scroll">
-        <li class = "reviewList">
+    <h6 class="mt-4">Other Reviews</h6>
+    <ul class="list" data-spy="scroll">
+        <li class="reviewList mt-4 mb-2" v-for="(comment, index) in allComments" v-bind:key="index.id">
             <userReviews :review=comment />
         </li>
     </ul>

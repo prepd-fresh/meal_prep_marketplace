@@ -1,6 +1,5 @@
 <template>
 <div>
-
     <div class="description">
         <h4 class="headerPayment">Description</h4>
         {{this.paymentInfo.description}}
@@ -8,27 +7,26 @@
     <b-row>
         <b-col>
             <h4 class="headerPayment">Payment Options</h4>
-            <div class="d-flex">
-                <span class="badge badge-primary mr-2 text-capitalize" v-for="(n, i) in this.paymentInfo.paymentOptions" :key="i">{{n}}</span>
+            <div class="d-flex mb-4 flex-wrap">
+                <span class="d-flex align-items-center badge badge-warning mr-1 mb-1 text-capitalize justify-content-center" v-for="(n, i) in this.paymentInfo.paymentOptions" :key="i">{{n}}</span>
             </div>
         </b-col>
         <b-col>
             <h4 class="headerPayment">Prices</h4>
-            <div class="d-flex">
-                <span class="badge badge-primary mr-2 text-capitalize">{{this.paymentInfo.priceRange.lowest}}</span>
+            <div class="d-flex mb-4 flex-wrap">
+                <span class="d-flex align-items-center badge badge-success mr-1 mb-1 text-capitalize justify-content-center">{{this.paymentInfo.priceRange.lowest}}</span>
 
-                <span class="badge badge-primary mr-2 text-capitalize">{{this.paymentInfo.priceRange.highest}}</span>
+                <span class="d-flex align-items-center badge badge-success mr-1 mb-1 text-capitalize justify-content-center">{{this.paymentInfo.priceRange.highest}}</span>
             </div>
         </b-col>
     </b-row>
     <b-row>
         <b-col>
             <h4 class="test">Delivery days </h4>
-            <ul v-for="(day, index) in paymentInfo.deliveryDays" v-bind:key="index.id" >
-               <span class="badge badge-primary mr-2 text-capitalize">{{day}}</span>
-            </ul>
+            <div class="d-flex mb-4 flex-wrap">
+               <span class="d-flex align-items-center badge badge-primary mr-1 mb-1 text-capitalize justify-content-center" v-for="(day, index) in paymentInfo.deliveryDays" v-bind:key="index.id">{{day}}</span>
+            </div>
         </b-col>
-
     </b-row>
 </div>
 </template>

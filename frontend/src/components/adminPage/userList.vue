@@ -1,40 +1,32 @@
 <template>
-<div>
-    <h1>All Users {{this.newUsers}}</h1>
-    <b-table-simple responsive class="table">
-        <b-thead>
-            <tr>
-                <td>
-                    <strong>Email</strong>
-                </td>
-                <td>
-                    <strong>Name</strong>
-                </td>
-                <td>
-                    <strong>Role</strong>
-                </td>
-                <td>
-                    <strong>Delete</strong>
-                </td>
-            </tr>
-        </b-thead>
-        <tbody>
-            <tr v-for="(user, index) in users" v-bind:key="index.id">
-                <td>
-                    <p>{{user.email}}</p>
-                </td>
-                <td>
-                    <p>{{user.name}}</p>
-                </td>
-                <td>
-                    <p>{{user.role}}</p>
-                </td>
-                <td>
-                    <BIconTrash class="delete" scale="1.4" v-on:click="deleteUser(user._id)" />
-                </td>
-            </tr>
-        </tbody>
-    </b-table-simple>
+<div class="container">
+    <div class="row">
+        <h1>All Users {{this.newUsers}}</h1>
+    </div>
+    <div class="row">
+        <b-table-simple responsive hover striped class="ml-0">
+            <b-thead>
+                <b-tr>
+                    <b-th colspan="1">Email</b-th>
+                    <b-th colspan="1">Name</b-th>
+                    <b-th colspan="1">Role</b-th>
+                    <b-th colspan="1">Delete</b-th>
+                </b-tr>
+            </b-thead>
+            <b-tbody>
+                <b-tr v-for="(user, index) in users" v-bind:key="index.id">
+                    <b-td>{{user.email}}</b-td>
+                    <b-td>{{user.name}}</b-td>
+                    <b-td>{{user.role}}</b-td>
+                    <b-td>
+                        <b-button class="d-flex" variant="outline-danger" @click="deleteUser(user._id)">
+                            <i class="material-icons">delete</i>
+                        </b-button>
+                    </b-td>
+                </b-tr>
+            </b-tbody>
+        </b-table-simple>
+    </div>
 </div>
 </template>
 
@@ -93,4 +85,8 @@ export default {
 </script>
 
 <style>
+
+    .ml-0.table-responsive table{
+        margin-left: 0;
+    }
 </style>

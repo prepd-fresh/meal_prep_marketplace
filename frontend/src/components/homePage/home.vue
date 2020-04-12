@@ -6,9 +6,11 @@
     </b-button>
 
     <advancedSearch id="sidebar-1" @clickSearch="onSearch" @clearedForm="restCompanys" />
-    <div class="d-flex align-items-center flex-column">
-        <div v-for="n in this.companys.length" v-bind:key="n" class="mb-4">
-            <company :idNumber="n" :company="companys[n- 1]" />
+    <div class="container">
+        <div class="d-flex align-items-center flex-column">
+            <div v-for="n in this.companys.length" v-bind:key="n" class="mb-4 row">
+                <company :idNumber="n" :company="companys[n- 1]" />
+            </div>
         </div>
     </div>
 </div>
