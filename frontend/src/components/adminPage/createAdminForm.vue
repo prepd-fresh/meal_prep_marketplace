@@ -58,7 +58,6 @@ export default {
             }
         },
         submit() {
-            this.$bvModal.hide('modal-1')
             this.$emit("addedAdmin", "true")
             console.log(API_URL)
             this.$http
@@ -74,6 +73,7 @@ export default {
                         this.errorEmail = false;
                         this.$emit("addedAdmin", "true")
                         this.$bvModal.hide('modal-1')
+                        this.makePassToast()
                     } else if (response.data.message === "emailTaken") {
                         this.errorEmail = true;
                     } else {
@@ -81,7 +81,15 @@ export default {
                     }
 
                 })
-        }
+        },
+            makePassToast(append = false, ) {
+            this.$bvToast.toast(`Created Admin Successfully`, {
+                title: "Created successfully",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "success"
+            })
+        },
     },
     computed: {
         //Name error checking done

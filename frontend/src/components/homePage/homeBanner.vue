@@ -24,7 +24,7 @@ export default {
 
 <style>
 .logo {
-    width: 50%;
+    width: 30%;
     filter: brightness(100%)!important;
 }
 .banner {
@@ -43,13 +43,6 @@ export default {
   background-color:#F8B21D !important;
 
 }
-@media only screen and (max-width: 600px) {
-  .logo{
-    margin-top:40px;
-  }
-  .button{
-    margin-left:10px
-  }
-}
+
 
 </style>

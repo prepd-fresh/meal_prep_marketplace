@@ -1,9 +1,12 @@
 <template>
 <div>
     <banner />
-    <b-button v-b-toggle.sidebar-1 size="sm" class="advancedSearchButton">Advanced Search
+    <b-button v-b-toggle.sidebar-1 size="sm" class="advancedSearchButton" id="advancedSearchButton">Advanced Search
         <BIconCaretRight scale="1.4" />
     </b-button>
+      <b-tooltip target="advancedSearchButton" triggers="hover">
+    This is the advanced search it helps find companys that suit your life style
+    </b-tooltip>
 
     <advancedSearch id="sidebar-1" @clickSearch="onSearch" @clearedForm="restCompanys" />
     <div class="container">
@@ -89,6 +92,13 @@ export default {
                     this.companys =this.companys.filter(item => (item.extraProtien.includes(searchItems.extraProtien)))
                 
                 }
+                if(this.companys.length === 0){
+                    this.makeFailToast()
+                }
+                else{
+                    this.makePassToast()
+                }
+                
             }
 
         },
@@ -96,6 +106,22 @@ export default {
             if (value === true) {
                 this.companys = this.tempCompanys
             }
+        },
+        makePassToast(append = false, ) {
+            this.$bvToast.toast(`${this.companys.length} Company found`, {
+                title: "Ckeck it out we found something..",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "success"
+            })
+        },
+        makeFailToast(append = false, ) {
+            this.$bvToast.toast(`${this.companys.length} Companys found`, {
+                title: "Sorry please try Again",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "danger"
+            })
         }
     },
 

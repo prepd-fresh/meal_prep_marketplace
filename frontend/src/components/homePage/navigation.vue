@@ -158,15 +158,5 @@ export default {
     background-color: #f8b21d !important;
 }
 
-@media only screen and (max-width: 600px) {
-    .search {
-        position: fixed;
-        z-index: 1;
-        margin-top: 15%;
-        width: 100%;
-    }
-    .navBar{
-        width: 100%;
-    }
-}
+
 </style>

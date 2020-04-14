@@ -73,6 +73,14 @@ export default {
         onReviewStarClicked(value) {
             this.newComment.rating = value
         },
+        clearComment(){
+              this.newComment = {
+                rating: 0,
+                email: '',
+                content: '',
+                date: '',
+            }
+        },
         validateComment() {
             if (this.newComment.content.length == 0 || this.newComment.content.length > 150) {
                 return true
@@ -82,6 +90,22 @@ export default {
                 return true
             }
 
+        },
+        makeFailToast(append = false, ) {
+            this.$bvToast.toast(`Comment Addition Failed  `, {
+                title: "Comment Not Added, You have Already Commented",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "danger"
+            })
+        },
+        makePassToast(append = false, ) {
+            this.$bvToast.toast(`Comment Was Added`, {
+                title: "Thank you for commenting",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "success"
+            })
         },
         submitComment() {
             //checks if user is logged in
@@ -103,10 +127,12 @@ export default {
                         this.newComment.email = response.data.email
                         this.newComment.date = response.data.date
                         this.allComments.push(this.newComment)
+                        this.clearComment();
+                        this.makePassToast()
                     }
                     if(response.data.message === "AlreadyCommented"){
-                        //alert("you cannot comment on this company")
-                        console.log("login")
+                        this.clearComment();
+                       this.makeFailToast()
                     }
                 }).catch((error) => {
                     console.log(error.response)

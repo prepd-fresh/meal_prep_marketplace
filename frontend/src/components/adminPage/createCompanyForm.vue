@@ -277,8 +277,51 @@ export default {
                     if (responces.data.message === "true") {
                         this.$emit("addedCompany", true)
                         this.$bvModal.hide('modalPopover')
+                        this.makePassToast();
+                        this.clearForm()
+                        
                     }
                 })
+        },
+        makePassToast(append = false, ) {
+            this.$bvToast.toast(`Created Company successfully`, {
+                title: "Created successfully",
+                autoHideDelay: 5000,
+                appendToast: append,
+                variant: "success"
+            })
+        },
+        clearForm(){
+             this.form= {
+                name: '',
+                deliveryLocations: [],
+                deliveryDays: [],
+                description:'',
+                cutOff: {
+                    time: '',
+                    zone: ''
+                },
+                paymentOptions: [],
+                priceRange: {
+                    lowest: '',
+                    highest: ''
+                },
+                bulkDiscount: null,
+                numberOfMeals: '',
+                mealOptions: {
+                    breakFast: '',
+                    lunch: '',
+                    dinner: '',
+                    snacks: ''
+                },
+                menuChanges: '',
+                sizeOptions: '',
+                vegetarian: '',
+                extraProtien: '',
+                vegan: '',
+                instagramFollowers: ''
+            }
+
         },
         countdown: function () {
             this.remainingCount = this.maxCount - this.form.description.length;

@@ -5,7 +5,10 @@
         <b-button v-b-modal.modal-1 class="adminButtons">Create Admin</b-button>
         <createAdmin @addedAdmin="onAddAdmin" />
         <createCompany @addedCompany="onAddCompany" />
-        <button v-on:click="reloaderTest">Test Reloader</button>
+        <b-button v-on:click="reloaderTest"  class="adminButtons" id="tableRefresher">Table Refresher</b-button>
+          <b-tooltip target="tableRefresher" triggers="hover">
+            Due to the nature of Vuejs sometimes the table has to be refreshed by pushing this button
+        </b-tooltip>
     </div>
     <div class="tabs">
         <b-tabs content-class="mt-3" v-if="reloaderUser">
