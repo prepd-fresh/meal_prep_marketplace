@@ -26,9 +26,9 @@ export const addTestComment = (req, res) => {
 
 export const addComment = async (req, res) => {
     const commentData = JSON.parse(req.body.newComment)
-
-    var commentValidator = await validateComment(req.user.email, commentData.companyName).catch(() => "promis rejected")
-    if (commentValidator === null) {
+    if (commentData.companyName !== null) {
+        var commentValidator = await validateComment(req.user.email, commentData.companyName).catch(() => "promis rejected")
+        if (await commentValidator === null ) {
             var data = new commentModel({
                 email: req.user.email,
                 companyName: commentData.companyName,
@@ -36,13 +36,16 @@ export const addComment = async (req, res) => {
                 date: Date.now(),
                 rating: commentData.rating
             })
-            data.save((err) =>{
-                if(err) throw err
+            data.save((err) => {
+                if (err) throw err
             })
-        res.status(200).json({ message: "added", email: req.user.email, date: Date.now(), content: commentData.message })
-        res.end();
-    }
-    else {
+            res.status(200).json({ message: "added", email: req.user.email, date: Date.now(), content: commentData.message })
+            res.end();
+        }
+        else {
+            res.status(200).json({ message: "AlreadyCommented" })
+        }
+    }else{
         res.status(200).json({ message: "AlreadyCommented" })
     }
 }
@@ -76,19 +79,19 @@ export const allCommentsAdmin = (req, res) => {
         }
     });
 }
-export const deleteCommentById = (req,res)=>{
+export const deleteCommentById = (req, res) => {
     const commentId = JSON.parse(req.body.commentID)
-    commentModel.deleteOne({_id: new mongodb.ObjectID(commentId)}, (err, company) =>{
-        if(err) res.send(err)
+    commentModel.deleteOne({ _id: new mongodb.ObjectID(commentId) }, (err, company) => {
+        if (err) res.send(err)
     })
-    res.status(200).json({message:"true"})
+    res.status(200).json({ message: "true" })
 }
 
 async function validateComment(checkerEmail, checkerCompanyName) {
     var response
 
-    await commentModel.findOne({ email: checkerEmail, companyName: checkerCompanyName }, function(err, comment){
-        if(err) return err
+    await commentModel.findOne({ email: checkerEmail, companyName: checkerCompanyName }, function (err, comment) {
+        if (err) return err
 
         response = comment
         console.log(comment)

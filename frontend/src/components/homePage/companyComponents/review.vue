@@ -82,9 +82,7 @@ export default {
             }
         },
         validateComment() {
-            if (this.newComment.content.length == 0 || this.newComment.content.length > 150) {
-                return true
-            } else if (this.comment.score === 0) {
+            if (this.newComment.content.length == 0 || this.newComment.content.length > 150 || this.comment.rating === 0) {
                 return false
             } else {
                 return true
@@ -93,7 +91,7 @@ export default {
         },
         makeFailToast(append = false, ) {
             this.$bvToast.toast(`Comment Addition Failed  `, {
-                title: "Comment Not Added, You have Already Commented",
+                title: "Something went wrong please try again",
                 autoHideDelay: 5000,
                 appendToast: append,
                 variant: "danger"
@@ -113,7 +111,6 @@ export default {
                 alert("Please login")
                 this.$router.push("/login")
             }
-
             if (this.validateComment() == true) {
                 this.$http.post(API_URL_ADD_COMMENT, {
                     newComment: JSON.stringify(this.newComment)
@@ -137,6 +134,8 @@ export default {
                 }).catch((error) => {
                     console.log(error.response)
                 })
+            }else{
+                this.makeFailToast()
             }
         }
     },
