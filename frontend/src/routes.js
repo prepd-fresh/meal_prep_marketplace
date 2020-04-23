@@ -8,6 +8,19 @@ export default new VueRouter({
     {
       path: "/",
       name: "basic",
+      meta: {
+        title: "Prep'd Fresh Meal Prep Market Place",
+        metaTags: [
+          {
+            name: "description",
+            content: "Find the meal prep company that is tailored to suit your individual needs. Search now."
+          },
+          {
+            property: "og-description",
+            content: "Find the meal prep company that is tailored to suit your individual needs. Search now."
+          }
+        ]
+      },
       component: require("@/components/homePage/home.vue").default
     }, {
       path: "/about",
