@@ -23,8 +23,8 @@
 </template>
 
 <script>
-const API_URL = 'http://localhost:3000/api/allComments'
-const API_URL_ADD_COMMENT = 'http://localhost:3000/api/addComment'
+const API_URL = 'http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/allComments'
+const API_URL_ADD_COMMENT = 'http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/addComment'
 import reviewStars from "./rating"
 import userReviews from './userReviews'
 export default {

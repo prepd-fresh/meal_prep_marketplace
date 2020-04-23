@@ -335,10 +335,10 @@
 </template>
 
 <script>
-var API_URL = "http://localhost:3000/api/allCompanys";
-var API_SINGLE = "http://localhost:3000/api/singleCompany";
-var API_URL_DELETE = "http://localhost:3000/api/delete-company";
-var API_UPDATE = "http://localhost:3000/api/update-company";
+var API_URL = "http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/allCompanys";
+var API_SINGLE = "http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/singleCompany";
+var API_URL_DELETE = "http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/delete-company";
+var API_UPDATE = "http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/update-company";
 
 export default {
   data() {
