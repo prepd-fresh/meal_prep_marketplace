@@ -1,13 +1,13 @@
 <template>
 <div>
     <div>
-        <b-button v-b-modal.modalPopover class="adminButtons">Add company</b-button>
+        <b-button v-b-modal.modalPopover class="adminButtons">Add Company</b-button>
         <b-button v-b-modal.modal-1 class="adminButtons">Create Admin</b-button>
         <createAdmin @addedAdmin="onAddAdmin" />
         <createCompany @addedCompany="onAddCompany" />
         <b-button v-on:click="reloaderTest"  class="adminButtons" id="tableRefresher">Table Refresher</b-button>
           <b-tooltip target="tableRefresher" triggers="hover">
-            Due to the nature of Vuejs sometimes the table has to be refreshed by pushing this button
+            Click here to refresh
         </b-tooltip>
     </div>
     <div class="tabs">

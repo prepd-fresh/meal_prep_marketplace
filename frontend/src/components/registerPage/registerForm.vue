@@ -18,7 +18,7 @@
           trim
         ></b-form-input>
         <div v-show="errorEmail">
-          <p class="errorMessage">Email is taken</p>
+          <p class="errorMessage">This email address is already taken</p>
         </div>
       </b-form-group>
 
@@ -158,27 +158,21 @@ export default {
       } else if (this.form.password.length > 0) {
         return "Password needs to be longer";
       } else {
-        return "Cannot be empy";
+        return "Password cannot be blank";
       }
     },
     //password checker
     passwordCheckerState() {
-      if (this.passwordChecker.length ===0) {
-        return false;
-      } else if (this.form.password === this.passwordChecker) {
+      if (this.form.password === this.passwordChecker) {
         return true;
-      } else {
-        return false;
       }
+      return false;
     },
     invalidFeedbackPasswordChecker() {
       if (this.form.password !== this.passwordChecker) {
         return "Passwords do not match";
-      } else if (this.passwordChecker.length == 0) {
-        return "cannot be empty";
-      } else {
-        return "cannot be empty";
       }
+      return "Password cannot be blank";
     }
   }
 };

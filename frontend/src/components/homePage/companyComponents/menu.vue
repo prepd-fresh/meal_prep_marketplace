@@ -36,7 +36,7 @@
             />
           </svg>
         </h6>
-        <h6>Extra Protien:
+        <h6>Extra Protein:
             <svg
             :class="'ml-2 bi' + (menuOptions.extraProtienOption ? 'bi-check' : 'b-x') "
             width="1em"
@@ -63,7 +63,7 @@
           v-bind:key="index.id"
         >            
             <div class="d-flex mb-1">
-                <h6>BreakFast: </h6>
+                <h6>Breakfast: </h6>
                 <span class="badge-pill badge-secondary ml-1">{{meal.breakFast}} </span>
             </div>
             <div class="d-flex mb-1">

@@ -22,7 +22,7 @@
     </b-row>
     <b-row>
         <b-col>
-            <h4 class="test">Delivery days </h4>
+            <h4 class="test">Delivery Days </h4>
             <div class="d-flex mb-4 flex-wrap">
                <span class="d-flex align-items-center badge badge-primary mr-1 mb-1 text-capitalize justify-content-center" v-for="(day, index) in paymentInfo.deliveryDays" v-bind:key="index.id">{{day}}</span>
             </div>

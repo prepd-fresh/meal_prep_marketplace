@@ -8,7 +8,7 @@
 
     <b-card-text>A second paragraph of text in the card.</b-card-text>
 
-    <a href="#" class="card-link">Our Comapny</a>
+    <a href="https://prepdfresh.com" class="card-link">Prep'd Fresh</a>
   </b-card>
 </div>
 </template>

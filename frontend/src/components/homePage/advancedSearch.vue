@@ -25,7 +25,7 @@
                     <b-form-checkbox value="Mississauga">Mississuaga</b-form-checkbox>
                     <b-form-checkbox value="Guelph">Guelph</b-form-checkbox>
                     <b-form-checkbox value="Waterloo">Waterloo</b-form-checkbox>
-                    <b-form-checkbox value="St.Catharines">St.Catharines</b-form-checkbox>
+                    <b-form-checkbox value="St.Catharines">St. Catharines</b-form-checkbox>
                 </b-form-checkbox-group>
             </b-form-group>
             <b-form-group label="Payment Options:">
@@ -34,7 +34,7 @@
                     <b-form-checkbox value="Paypal">Paypal</b-form-checkbox>
                     <b-form-checkbox value="Credit card">Credit card</b-form-checkbox>
                     <b-form-checkbox value="cash">Cash</b-form-checkbox>
-                    <b-form-checkbox value="E-Transfer">e-transfer</b-form-checkbox>
+                    <b-form-checkbox value="E-Transfer">E-Transfer</b-form-checkbox>
                 </b-form-checkbox-group>
             </b-form-group>
             <b-row>

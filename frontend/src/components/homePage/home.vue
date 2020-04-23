@@ -5,7 +5,7 @@
         <BIconCaretRight scale="1.4" />
     </b-button>
       <b-tooltip target="advancedSearchButton" triggers="hover">
-    This is the advanced search it helps find companys that suit your life style
+    Advanced Search
     </b-tooltip>
 
     <advancedSearch id="sidebar-1" @clickSearch="onSearch" @clearedForm="restCompanys" />
@@ -108,16 +108,16 @@ export default {
             }
         },
         makePassToast(append = false, ) {
-            this.$bvToast.toast(`${this.companys.length} Company found`, {
-                title: "Ckeck it out we found something..",
+            this.$bvToast.toast(`${this.companys.length} matches`, {
+                title: "Success",
                 autoHideDelay: 5000,
                 appendToast: append,
                 variant: "success"
             })
         },
         makeFailToast(append = false, ) {
-            this.$bvToast.toast(`${this.companys.length} Companys found`, {
-                title: "Sorry please try Again",
+            this.$bvToast.toast(`${this.companys.length} matches`, {
+                title: "Sorry, please try Again",
                 autoHideDelay: 5000,
                 appendToast: append,
                 variant: "danger"

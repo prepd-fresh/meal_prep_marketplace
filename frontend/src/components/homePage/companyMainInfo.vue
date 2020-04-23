@@ -4,8 +4,8 @@
   <h5>Website link</h5>
     <ul>
         <li>#vegans</li>
-        <li>#fittness</li>
-        <li>#vegitarian</li>
+        <li>#fitness</li>
+        <li>#vegetarian</li>
     </ul>
   </div>
 </template>

@@ -11,7 +11,7 @@
                         <b-card-text>
                             <h4 class="header">{{company.name}}</h4>
                             <div class="secondary">
-                                <h5 class="secondayHeader">Delivery locations: </h5>
+                                <h5 class="secondayHeader">Delivery Locations: </h5>
                                 <div class="d-flex flex-wrap mb-4">
                                     <span class="d-flex align-items-center badge badge-primary mr-1 mb-1 justify-content-center" v-for="(location, index) in company.deliveryLocations" v-bind:key="index.id">
                                         {{location}}

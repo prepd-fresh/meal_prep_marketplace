@@ -1,7 +1,7 @@
   <template>
  <div >
     <b-form @submit.prevent="onSubmit" class="form"  >
-      <h1 class="headerLogin">Please login to your Account</h1>
+      <h1 class="headerLogin">Please login to your account</h1>
       <b-form-group
         class="label"
         id="email-input-label"
@@ -16,7 +16,7 @@
           required
           placeholder="Enter email"
         ></b-form-input>
-        <div v-show="error"><p class= "errorMessage">Sorry Cant Login Please Check</p></div>
+        <div v-show="error"><p class= "errorMessage">Currently cannot login please try again later</p></div>
       </b-form-group>
 
       <b-form-group
@@ -37,7 +37,7 @@
 
       <div class="buttonGroup">
         <b-button type="submit" variant="primary" class="buttonSubmit">Login</b-button>
-        <b-button class="buttonForgot" v-on:click="reRoute" variant="danger">Dont have an account? Register </b-button>
+        <b-button class="buttonForgot" v-on:click="reRoute" variant="danger">Don't have an account? Register </b-button>
       </div>
     </b-form>
   </div>

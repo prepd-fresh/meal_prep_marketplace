@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
     <h5>Location</h5>
-    <h6>All Delivery locations</h6>
+    <h6>All Delivery Locations</h6>
     <ul v-for="(location, index) in deliveryLocations.deliveryOptions" v-bind:key="index.id">
       <li>{{location}}</li>
     </ul>
