@@ -22,7 +22,7 @@
                     <b-form-checkbox value="Hamilton">Hamilton</b-form-checkbox>
                     <b-form-checkbox value="Burlington">Burlington</b-form-checkbox>
                     <b-form-checkbox value="Vaughan">Vaughan</b-form-checkbox>
-                    <b-form-checkbox value="Mississauga">Mississuaga</b-form-checkbox>
+                    <b-form-checkbox value="Mississauga">Mississauga</b-form-checkbox>
                     <b-form-checkbox value="Guelph">Guelph</b-form-checkbox>
                     <b-form-checkbox value="Waterloo">Waterloo</b-form-checkbox>
                     <b-form-checkbox value="St.Catharines">St. Catharines</b-form-checkbox>
