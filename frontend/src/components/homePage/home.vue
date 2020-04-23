@@ -117,7 +117,7 @@ export default {
         },
         makeFailToast(append = false, ) {
             this.$bvToast.toast(`${this.companys.length} matches`, {
-                title: "Sorry, please try Again",
+                title: "Sorry, no companies matched this query.",
                 autoHideDelay: 5000,
                 appendToast: append,
                 variant: "danger"

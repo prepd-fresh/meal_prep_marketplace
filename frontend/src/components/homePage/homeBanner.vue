@@ -5,7 +5,7 @@
           <b-img :src="image.logo" fluid alt="Responsive image" class="logo"></b-img>
         </template>
     
-      <b-button class="button" variant="primary" href="https://prepdfresh.com/">Preped Fresh</b-button>
+      <b-button class="button" variant="primary" href="https://prepdfresh.com/">Prep'd Fresh</b-button>
     </b-jumbotron>
   </div>
 </template>

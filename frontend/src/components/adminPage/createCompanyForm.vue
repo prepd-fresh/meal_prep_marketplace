@@ -103,7 +103,7 @@
                 </b-form-group>
             </b-col>
             <b-col>
-                <b-form-group label="Vegatarian:">
+                <b-form-group label="Vegetarian:">
                     <b-form-radio v-model="form.vegetarian" name="vegOption-radios" value="True">Yes</b-form-radio>
                     <b-form-radio v-model="form.vegetarian" name="vegOption-radios" value="False">No</b-form-radio>
                 </b-form-group>
