@@ -20,7 +20,7 @@
 </template>
 
 <script>
-const API_URL = 'http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/allCompanys'
+const API_URL = 'https://prepdmeals.ca:3000/api/allCompanys'
 import company from "./company.vue";
 import banner from "./homeBanner"
 import advancedSearch from "./advancedSearch"

@@ -28,10 +28,13 @@ commentRoutes(app)
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
-var privateKey  = fs.readFileSync('/home/ubuntu/meal_prep_marketplace/backend/sslcert/key.pem', 'utf8');
-var certificate = fs.readFileSync('/home/ubuntu/meal_prep_marketplace/backend/sslcert/cert.pem', 'utf8');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/archive/prepdmeals.ca/privkey1.pem', 'utf8');
+var certificate = fs.readFileSync('/etc/letsencrypt/archive/prepdmeals.ca/cert1.pem', 'utf8');
+var chain = fs.readFileSync('/etc/letsencrypt/archive/prepdmeals.ca/chain1.pem', 'utf8');
+//var privateKey  = fs.readFileSync('/home/ubuntu/meal_prep_marketplace/backend/sslcert/key.pem', 'utf8');
+//var certificate = fs.readFileSync('/home/ubuntu/meal_prep_marketplace/backend/sslcert/cert.pem', 'utf8');
 
-var credentials = {key: privateKey, cert: certificate};
+var credentials = {key: privateKey, cert: certificate, ca: chain};
 
 // your express configuration here
 

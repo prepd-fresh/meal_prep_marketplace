@@ -31,8 +31,8 @@
 </template>
 
 <script>
-var API_URL = "http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/allusers";
-var API_DELETE_USER_URL = "http://ec2-18-216-215-249.us-east-2.compute.amazonaws.com:3000/api/deleteuser"
+var API_URL = "https://prepdmeals.ca:3000/api/allusers";
+var API_DELETE_USER_URL = "https://prepdmeals.ca:3000/api/deleteuser"
 export default {
     data() {
         return {
