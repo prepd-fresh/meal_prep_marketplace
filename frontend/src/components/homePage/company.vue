@@ -54,7 +54,7 @@ export default {
             companyInformation: this.company,
 
             images: {
-                foodPicture: require("../../assets/images/burrito.jpg")
+                foodPicture: this.company.logoURL
             }
         };
     },

@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <b-col>
-        <h4 class="mainHeader">Menu FQA</h4>
+        <h4 class="mainHeader">Menu FAQ</h4>
         <h6>
           Menu Changes:
           <svg

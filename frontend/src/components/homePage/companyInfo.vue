@@ -3,7 +3,7 @@
     <h2 class="dn-600">{{this.companyCurrentName}}</h2>
     
     <b-tabs content-class="mt-4" class="tab">
-      <b-tab title="General information">
+      <b-tab title="General Information">
         <paymentOptions :paymentInfo ="paymentInfo" />
       </b-tab>
       <b-tab title="Menu Options" >
@@ -34,6 +34,7 @@ export default {
         info: this.companyInformation, 
         companyCurrentName:  this.companyInformation.name,
         //spliting all the data into sub groups and passing it down the component tree
+	logoURL: this.companyInformation.logoURL,
         paymentInfo:{
           description: this.companyInformation.description,
           paymentOptions:  this.companyInformation.paymentOptions,
