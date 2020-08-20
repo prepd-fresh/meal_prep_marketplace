@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/prepd-fresh/meal_prep_marketplace#readme",
   "dependencies": {
-    "bcrypt": "^3.0.8",
+    "bcrypt": "^5.0.0",
     "braces": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
